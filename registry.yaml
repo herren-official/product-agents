@@ -4,7 +4,7 @@ agents:
     name: "Requirements Analyst"
     tags: ["inception", "requirements"]
     provider: "bedrock"
-    model: "ap.amazon.nova-lite-v1:0"
+    model: "claude-sonnet-4-6"
     skill_path: "~/git/product-agents/inception/requirements-analyst.md"
     scope: "global"
     timeout_seconds: 180
@@ -13,7 +13,7 @@ agents:
     name: "Application Designer"
     tags: ["inception", "design"]
     provider: "bedrock"
-    model: "ap.amazon.nova-lite-v1:0"
+    model: "claude-sonnet-4-6"
     skill_path: "~/git/product-agents/inception/application-designer.md"
     scope: "global"
     timeout_seconds: 180
@@ -22,7 +22,7 @@ agents:
     name: "Units Generator"
     tags: ["inception", "planning"]
     provider: "bedrock"
-    model: "ap.amazon.nova-lite-v1:0"
+    model: "claude-sonnet-4-6"
     skill_path: "~/git/product-agents/inception/units-generator.md"
     scope: "global"
     timeout_seconds: 120
@@ -31,7 +31,7 @@ agents:
     name: "Cross-Domain Reference Checker"
     tags: ["inception", "checker", "herren"]
     provider: "bedrock"
-    model: "ap.amazon.nova-lite-v1:0"
+    model: "claude-sonnet-4-6"
     skill_path: "~/git/product-agents/inception/cross-domain-checker.md"
     scope: "global"
     timeout_seconds: 120
@@ -41,7 +41,7 @@ agents:
     name: "Functional Designer"
     tags: ["construction", "design"]
     provider: "bedrock"
-    model: "ap.amazon.nova-lite-v1:0"
+    model: "claude-sonnet-4-6"
     skill_path: "~/git/product-agents/construction/functional-designer.md"
     scope: "global"
     timeout_seconds: 180
@@ -50,7 +50,7 @@ agents:
     name: "Kotlin Code Reviewer"
     tags: ["construction", "reviewer", "kotlin", "backend"]
     provider: "bedrock"
-    model: "ap.amazon.nova-lite-v1:0"
+    model: "claude-sonnet-4-6"
     skill_path: "~/git/product-agents/construction/kotlin-reviewer.md"
     scope: "global"
     timeout_seconds: 120
@@ -59,7 +59,7 @@ agents:
     name: "TypeScript Code Reviewer"
     tags: ["construction", "reviewer", "typescript", "frontend"]
     provider: "bedrock"
-    model: "ap.amazon.nova-lite-v1:0"
+    model: "claude-sonnet-4-6"
     skill_path: "~/git/product-agents/construction/typescript-reviewer.md"
     scope: "global"
     timeout_seconds: 120

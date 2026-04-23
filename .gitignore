@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# JetBrains IDE
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/shelf/
+
+# VS Code
+.vscode/
+
+# Symlinks (local only — setup.sh로 생성됨)
+# ~/.claude/agents/ 는 로컬 환경에 따라 다르므로 트래킹 불필요
+
+# 임시 파일
+*.tmp
+*.bak

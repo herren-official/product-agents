@@ -1,0 +1,65 @@
+agents:
+  # ── Inception 공정 ──────────────────────────────────────────────
+  - id: "requirements-analyst"
+    name: "Requirements Analyst"
+    tags: ["inception", "requirements"]
+    provider: "bedrock"
+    model: "ap.amazon.nova-lite-v1:0"
+    skill_path: "~/git/herren-agents/inception/requirements-analyst.md"
+    scope: "global"
+    timeout_seconds: 180
+
+  - id: "application-designer"
+    name: "Application Designer"
+    tags: ["inception", "design"]
+    provider: "bedrock"
+    model: "ap.amazon.nova-lite-v1:0"
+    skill_path: "~/git/herren-agents/inception/application-designer.md"
+    scope: "global"
+    timeout_seconds: 180
+
+  - id: "units-generator"
+    name: "Units Generator"
+    tags: ["inception", "planning"]
+    provider: "bedrock"
+    model: "ap.amazon.nova-lite-v1:0"
+    skill_path: "~/git/herren-agents/inception/units-generator.md"
+    scope: "global"
+    timeout_seconds: 120
+
+  - id: "cross-domain-checker"
+    name: "Cross-Domain Reference Checker"
+    tags: ["inception", "checker", "herren"]
+    provider: "bedrock"
+    model: "ap.amazon.nova-lite-v1:0"
+    skill_path: "~/git/herren-agents/inception/cross-domain-checker.md"
+    scope: "global"
+    timeout_seconds: 120
+
+  # ── Construction 공정 ───────────────────────────────────────────
+  - id: "functional-designer"
+    name: "Functional Designer"
+    tags: ["construction", "design"]
+    provider: "bedrock"
+    model: "ap.amazon.nova-lite-v1:0"
+    skill_path: "~/git/herren-agents/construction/functional-designer.md"
+    scope: "global"
+    timeout_seconds: 180
+
+  - id: "kotlin-reviewer"
+    name: "Kotlin Code Reviewer"
+    tags: ["construction", "reviewer", "kotlin", "backend"]
+    provider: "bedrock"
+    model: "ap.amazon.nova-lite-v1:0"
+    skill_path: "~/git/herren-agents/construction/kotlin-reviewer.md"
+    scope: "global"
+    timeout_seconds: 120
+
+  - id: "typescript-reviewer"
+    name: "TypeScript Code Reviewer"
+    tags: ["construction", "reviewer", "typescript", "frontend"]
+    provider: "bedrock"
+    model: "ap.amazon.nova-lite-v1:0"
+    skill_path: "~/git/herren-agents/construction/typescript-reviewer.md"
+    scope: "global"
+    timeout_seconds: 120

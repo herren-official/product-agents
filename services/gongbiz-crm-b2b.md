@@ -4,7 +4,7 @@
 
 | 레포 | 플랫폼 | 01 Inception | 02 Construction | 비고 |
 |------|--------|-------------|-----------------|------|
-| gongbiz-crm-b2b-backend | Kotlin/Spring | requirements-analyst, cross-domain-checker | functional-designer, kotlin-reviewer | |
+| gongbiz-crm-b2b-backend | Kotlin/Spring | requirements-analyst, cross-domain-checker | **code-planner**, functional-designer, kotlin-reviewer | wiki 기반 분석 |
 | gongbiz-crm-b2b-front | TypeScript/React | requirements-analyst | typescript-reviewer | |
 | gongbiz-crm-b2b-web | Next.js | requirements-analyst | typescript-reviewer | |
 | gongbiz-crm-android | Kotlin/Android | requirements-analyst | kotlin-reviewer | |

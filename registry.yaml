@@ -37,6 +37,15 @@ agents:
     timeout_seconds: 120
 
   # ── Construction 공정 ───────────────────────────────────────────
+  - id: "code-planner"
+    name: "Code Planner"
+    tags: ["construction", "planning", "analysis"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/02-construction/code-planner.md"
+    scope: "global"
+    timeout_seconds: 180
+
   - id: "functional-designer"
     name: "Functional Designer"
     tags: ["construction", "design"]

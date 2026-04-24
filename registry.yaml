@@ -269,6 +269,141 @@ agents:
     skill_path: "~/git/product-agents/08-operations/b2c-android-crashlytics-analyzer.md"
     scope: "service:gongbiz-b2c-android"
     timeout_seconds: 300
+  # ── Service: gongbiz-crm-iOS ─────────────────────────────────────
+  - id: "crm-ios-notion-analyzer"
+    name: "CRM iOS Notion Analyzer"
+    tags: ["inception", "crm-ios", "notion"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/01-inception/crm-ios-notion-analyzer.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 180
+
+  - id: "crm-ios-slack-analyzer"
+    name: "CRM iOS Slack Analyzer"
+    tags: ["inception", "crm-ios", "slack"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/01-inception/crm-ios-slack-analyzer.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 120
+
+  - id: "crm-ios-figma-ui-analyzer"
+    name: "CRM iOS Figma UI Analyzer"
+    tags: ["inception", "crm-ios", "figma", "ui"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/01-inception/crm-ios-figma-ui-analyzer.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 180
+
+  - id: "crm-ios-figma-policy-analyzer"
+    name: "CRM iOS Figma Policy Analyzer"
+    tags: ["inception", "crm-ios", "figma", "policy"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/01-inception/crm-ios-figma-policy-analyzer.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 180
+
+  - id: "crm-ios-component-mapper"
+    name: "CRM iOS Component Mapper"
+    tags: ["inception", "crm-ios", "figma", "components"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/01-inception/crm-ios-component-mapper.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 180
+
+  - id: "crm-ios-task-planner"
+    name: "CRM iOS Task Planner"
+    tags: ["spec", "crm-ios", "planning", "notion"]
+    provider: "bedrock"
+    model: "claude-opus-4-6"
+    skill_path: "~/git/product-agents/02-spec/crm-ios-task-planner.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 240
+
+  - id: "crm-ios-notion-writer"
+    name: "CRM iOS Notion Writer"
+    tags: ["spec", "crm-ios", "notion"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/02-spec/crm-ios-notion-writer.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 120
+
+  - id: "crm-ios-code-analyzer"
+    name: "CRM iOS Code Analyzer"
+    tags: ["plan", "crm-ios", "analysis"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/03-plan/crm-ios-code-analyzer.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 180
+
+  - id: "crm-ios-side-effect-analyzer"
+    name: "CRM iOS Side-Effect Analyzer"
+    tags: ["plan", "crm-ios", "analysis", "side-effect"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/03-plan/crm-ios-side-effect-analyzer.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 180
+
+  - id: "crm-ios-task-executor"
+    name: "CRM iOS Task Executor"
+    tags: ["build", "crm-ios", "orchestrator"]
+    provider: "bedrock"
+    model: "claude-opus-4-6"
+    skill_path: "~/git/product-agents/04-build/crm-ios-task-executor.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 300
+
+  - id: "crm-ios-code-implementer"
+    name: "CRM iOS Code Implementer"
+    tags: ["build", "crm-ios", "swift", "rxswift"]
+    provider: "bedrock"
+    model: "claude-opus-4-6"
+    skill_path: "~/git/product-agents/04-build/crm-ios-code-implementer.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 240
+
+  - id: "crm-ios-test-writer"
+    name: "CRM iOS Test Writer"
+    tags: ["test", "crm-ios", "xctest"]
+    provider: "bedrock"
+    model: "claude-opus-4-6"
+    skill_path: "~/git/product-agents/05-test/crm-ios-test-writer.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 240
+
+  - id: "crm-ios-build-checker"
+    name: "CRM iOS Build Checker"
+    tags: ["test", "crm-ios", "xcodebuild"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/05-test/crm-ios-build-checker.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 180
+
+  - id: "crm-ios-implementation-verifier"
+    name: "CRM iOS Implementation Verifier"
+    tags: ["review", "crm-ios", "verification"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/06-review/crm-ios-implementation-verifier.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 180
+
+  - id: "crm-ios-side-effect-verifier"
+    name: "CRM iOS Side-Effect Verifier"
+    tags: ["review", "crm-ios", "verification", "side-effect"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/06-review/crm-ios-side-effect-verifier.md"
+    scope: "service:gongbiz-crm-iOS"
+    timeout_seconds: 180
 
   # ── Service: gongbiz-crm-b2b-android ─────────────────────────────
   - id: "b2b-android-tc-generator"
@@ -612,3 +747,105 @@ skills:
     tags: ["meta", "b2b-android"]
     path: "~/git/product-agents/skills/b2b-Android/command-creator/SKILL.md"
     scope: "service:gongbiz-crm-b2b-android"
+  # ── Service: gongbiz-crm-iOS ─────────────────────────────────────
+  - id: "crm-ios-branch-creator"
+    name: "CRM iOS Branch Creator"
+    tags: ["ship", "crm-ios", "git"]
+    path: "~/git/product-agents/skills/crm-iOS/branch-creator/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-commit"
+    name: "CRM iOS Commit"
+    tags: ["ship", "crm-ios", "git"]
+    path: "~/git/product-agents/skills/crm-iOS/commit/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-pr"
+    name: "CRM iOS PR"
+    tags: ["ship", "crm-ios", "git", "pr"]
+    path: "~/git/product-agents/skills/crm-iOS/pr/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-pre-commit-checker"
+    name: "CRM iOS Pre-Commit Checker"
+    tags: ["review", "crm-ios", "convention"]
+    path: "~/git/product-agents/skills/crm-iOS/pre-commit-checker/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-document-checker"
+    name: "CRM iOS Document Checker"
+    tags: ["review", "crm-ios", "docs"]
+    path: "~/git/product-agents/skills/crm-iOS/document-checker/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-doc-manager"
+    name: "CRM iOS Doc Manager"
+    tags: ["review", "crm-ios", "docs"]
+    path: "~/git/product-agents/skills/crm-iOS/doc-manager/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-test-runner"
+    name: "CRM iOS Test Runner"
+    tags: ["test", "crm-ios", "xcodebuild"]
+    path: "~/git/product-agents/skills/crm-iOS/test-runner/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-coverage-checker"
+    name: "CRM iOS Coverage Checker"
+    tags: ["test", "crm-ios", "coverage"]
+    path: "~/git/product-agents/skills/crm-iOS/coverage-checker/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-repository-test"
+    name: "CRM iOS Repository Test"
+    tags: ["test", "crm-ios", "repository"]
+    path: "~/git/product-agents/skills/crm-iOS/repository-test/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-router-test"
+    name: "CRM iOS Router Test"
+    tags: ["test", "crm-ios", "router"]
+    path: "~/git/product-agents/skills/crm-iOS/router-test/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-usecase-test"
+    name: "CRM iOS UseCase Test"
+    tags: ["test", "crm-ios", "usecase"]
+    path: "~/git/product-agents/skills/crm-iOS/usecase-test/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-viewmodel-test"
+    name: "CRM iOS ViewModel Test"
+    tags: ["test", "crm-ios", "viewmodel", "rxswift"]
+    path: "~/git/product-agents/skills/crm-iOS/viewmodel-test/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-figma-analyze"
+    name: "CRM iOS Figma Analyze"
+    tags: ["plan", "crm-ios", "figma"]
+    path: "~/git/product-agents/skills/crm-iOS/figma-analyze/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-crashlytics-analyze"
+    name: "CRM iOS Crashlytics Analyze"
+    tags: ["operations", "crm-ios", "firebase", "crashlytics"]
+    path: "~/git/product-agents/skills/crm-iOS/crashlytics-analyze/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-crashlytics-fix"
+    name: "CRM iOS Crashlytics Fix"
+    tags: ["operations", "crm-ios", "firebase", "crashlytics"]
+    path: "~/git/product-agents/skills/crm-iOS/crashlytics-fix/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-task-planner"
+    name: "CRM iOS Task Planner (Skill)"
+    tags: ["spec", "crm-ios", "notion", "planning"]
+    path: "~/git/product-agents/skills/crm-iOS/task-planner/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"
+
+  - id: "crm-ios-task-executor"
+    name: "CRM iOS Task Executor (Skill)"
+    tags: ["build", "crm-ios", "orchestrator"]
+    path: "~/git/product-agents/skills/crm-iOS/task-executor/SKILL.md"
+    scope: "service:gongbiz-crm-iOS"

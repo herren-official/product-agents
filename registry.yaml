@@ -270,6 +270,63 @@ agents:
     scope: "service:gongbiz-b2c-android"
     timeout_seconds: 300
 
+  # ── Service: gongbiz-crm-b2b-android ─────────────────────────────
+  - id: "b2b-android-tc-generator"
+    name: "B2B Android TC Generator"
+    tags: ["spec", "b2b-android", "test-case"]
+    provider: "bedrock"
+    skill_path: "~/git/product-agents/02-spec/b2b-android-tc-generator.md"
+    scope: "service:gongbiz-crm-b2b-android"
+    timeout_seconds: 240
+
+  - id: "b2b-android-ui-test-planner"
+    name: "B2B Android UI Test Planner"
+    tags: ["test", "b2b-android", "ui-automator", "planner"]
+    provider: "bedrock"
+    skill_path: "~/git/product-agents/05-test/b2b-android-ui-test-planner.md"
+    scope: "service:gongbiz-crm-b2b-android"
+    timeout_seconds: 240
+
+  - id: "b2b-android-ui-test-generator"
+    name: "B2B Android UI Test Generator"
+    tags: ["test", "b2b-android", "ui-automator", "generator"]
+    provider: "bedrock"
+    skill_path: "~/git/product-agents/05-test/b2b-android-ui-test-generator.md"
+    scope: "service:gongbiz-crm-b2b-android"
+    timeout_seconds: 300
+
+  - id: "b2b-android-ui-test-healer"
+    name: "B2B Android UI Test Healer"
+    tags: ["test", "b2b-android", "ui-automator", "healer"]
+    provider: "bedrock"
+    skill_path: "~/git/product-agents/05-test/b2b-android-ui-test-healer.md"
+    scope: "service:gongbiz-crm-b2b-android"
+    timeout_seconds: 300
+
+  - id: "b2b-android-unit-test-planner"
+    name: "B2B Android Unit Test Planner"
+    tags: ["test", "b2b-android", "junit5", "planner"]
+    provider: "bedrock"
+    skill_path: "~/git/product-agents/05-test/b2b-android-unit-test-planner.md"
+    scope: "service:gongbiz-crm-b2b-android"
+    timeout_seconds: 240
+
+  - id: "b2b-android-unit-test-generator"
+    name: "B2B Android Unit Test Generator"
+    tags: ["test", "b2b-android", "junit5", "generator"]
+    provider: "bedrock"
+    skill_path: "~/git/product-agents/05-test/b2b-android-unit-test-generator.md"
+    scope: "service:gongbiz-crm-b2b-android"
+    timeout_seconds: 300
+
+  - id: "b2b-android-unit-test-healer"
+    name: "B2B Android Unit Test Healer"
+    tags: ["test", "b2b-android", "junit5", "healer"]
+    provider: "bedrock"
+    skill_path: "~/git/product-agents/05-test/b2b-android-unit-test-healer.md"
+    scope: "service:gongbiz-crm-b2b-android"
+    timeout_seconds: 300
+
 skills:
   # ── Service: gongbiz-b2c-iOS ─────────────────────────────────────
   - id: "b2c-ios-plan"
@@ -470,3 +527,88 @@ skills:
     tags: ["ship", "b2c-android", "orchestrator"]
     path: "~/git/product-agents/skills/b2c-Android/ship/SKILL.md"
     scope: "service:gongbiz-b2c-android"
+
+  # ── Service: gongbiz-crm-b2b-android ─────────────────────────────
+  - id: "b2b-android-backlog-refiner"
+    name: "B2B Android Backlog Refiner"
+    tags: ["inception", "spec", "b2b-android", "notion", "figma", "slack"]
+    path: "~/git/product-agents/skills/b2b-Android/backlog-refiner/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-prd"
+    name: "B2B Android PRD"
+    tags: ["spec", "b2b-android", "documentation"]
+    path: "~/git/product-agents/skills/b2b-Android/prd/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-work"
+    name: "B2B Android Work"
+    tags: ["plan", "b2b-android", "orchestrator"]
+    path: "~/git/product-agents/skills/b2b-Android/work/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-compose-ui"
+    name: "B2B Android Compose UI"
+    tags: ["build", "b2b-android", "compose", "figma", "design-system"]
+    path: "~/git/product-agents/skills/b2b-Android/compose-ui/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-create-api"
+    name: "B2B Android Create API"
+    tags: ["build", "b2b-android", "retrofit", "api"]
+    path: "~/git/product-agents/skills/b2b-Android/create-api/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-string-resource"
+    name: "B2B Android String Resource"
+    tags: ["build", "b2b-android", "resources", "i18n"]
+    path: "~/git/product-agents/skills/b2b-Android/string-resource/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-create-mock-data"
+    name: "B2B Android Create Mock Data"
+    tags: ["test", "b2b-android", "mock", "fixture"]
+    path: "~/git/product-agents/skills/b2b-Android/create-mock-data/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-unittest-agent"
+    name: "B2B Android Unittest Agent"
+    tags: ["test", "b2b-android", "junit5", "parallel", "pipeline"]
+    path: "~/git/product-agents/skills/b2b-Android/unittest-agent/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-import-cleaner"
+    name: "B2B Android Import Cleaner"
+    tags: ["review", "b2b-android", "cleanup"]
+    path: "~/git/product-agents/skills/b2b-Android/import-cleaner/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-review-pr"
+    name: "B2B Android Review PR"
+    tags: ["review", "b2b-android", "pr"]
+    path: "~/git/product-agents/skills/b2b-Android/review-pr/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-branch"
+    name: "B2B Android Branch"
+    tags: ["ship", "b2b-android", "git", "notion"]
+    path: "~/git/product-agents/skills/b2b-Android/branch/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-commit"
+    name: "B2B Android Commit"
+    tags: ["ship", "b2b-android", "git"]
+    path: "~/git/product-agents/skills/b2b-Android/commit/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-pr"
+    name: "B2B Android PR"
+    tags: ["ship", "b2b-android", "git", "pr", "notion"]
+    path: "~/git/product-agents/skills/b2b-Android/pr/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"
+
+  - id: "b2b-android-command-creator"
+    name: "B2B Android Command Creator"
+    tags: ["meta", "b2b-android"]
+    path: "~/git/product-agents/skills/b2b-Android/command-creator/SKILL.md"
+    scope: "service:gongbiz-crm-b2b-android"

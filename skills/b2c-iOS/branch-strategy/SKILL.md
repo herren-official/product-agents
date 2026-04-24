@@ -6,10 +6,10 @@ disable-model-invocation: false
 allowed-tools: ["Bash", "Read"]
 ---
 
-# /branch-strategy - Git 브랜치 전략 수립
+# /b2c-ios-branch-strategy - Git 브랜치 전략 수립
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[branch-strategy] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-branch-strategy] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 

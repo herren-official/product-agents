@@ -9,7 +9,7 @@ allowed-tools: ["Bash", "Read", "Grep", "Glob"]
 # Git 커밋 자동화
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[commit] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-commit] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 
@@ -37,7 +37,7 @@ $ARGUMENTS
 
 ### 1단계: Pre-Commit 검사
 
-`/pre-commit-checker` 스킬을 Skill 도구로 실행하여 컨벤션 검사 수행.
+`/b2c-ios-pre-commit-checker` 스킬을 Skill 도구로 실행하여 컨벤션 검사 수행.
 (변경 파일이 모두 문서(.md)인 경우 이 단계 생략 가능)
 
 - 에러가 있으면: 수정 요청 또는 사용자 확인 후 진행
@@ -122,7 +122,7 @@ GBIZ-XXXXX
 git add <specific-file-path>
 
 # 커밋 메시지는 반드시 HEREDOC 형식으로 작성
-git commit -m "$(cat <<'EOF'
+git b2c-ios-commit -m "$(cat <<'EOF'
 type: 구체적인 설명
 
 변경사항에 대한 설명
@@ -138,7 +138,7 @@ EOF
 ```bash
 # 1. Mock 파일 먼저 커밋
 git add Tests/Common/MockDelegate.swift
-git commit -m "$(cat <<'EOF'
+git b2c-ios-commit -m "$(cat <<'EOF'
 test: RouterTests용 MockDelegate 추가
 
 GBIZ-19840
@@ -147,7 +147,7 @@ EOF
 
 # 2. 테스트 파일 커밋
 git add Tests/ShopV2RouterTests.swift
-git commit -m "$(cat <<'EOF'
+git b2c-ios-commit -m "$(cat <<'EOF'
 test: ShopV2Router 테스트 코드 추가
 
 GBIZ-19840
@@ -158,7 +158,7 @@ EOF
 ### 문서 커밋
 ```bash
 git add .docs/conventions/CONVENTIONS.md
-git commit -m "$(cat <<'EOF'
+git b2c-ios-commit -m "$(cat <<'EOF'
 docs: CONVENTIONS 주석 규칙 예시 간소화
 
 반복되는 예시를 통합 정리
@@ -172,7 +172,7 @@ EOF
 
 | 에러 | 대응 |
 |------|------|
-| pre-commit-checker 위반 | 위반 항목 수정 후 재검사 |
+| b2c-ios-pre-commit-checker 위반 | 위반 항목 수정 후 재검사 |
 | GBIZ 번호 없음 | 브랜치명에서 추출 실패 시 사용자에게 수동 입력 요청 |
 | 커밋 실패 | 에러 메시지 확인 후 사용자에게 보고 |
 | 변경사항 없음 | "커밋할 변경사항이 없습니다" 안내 |

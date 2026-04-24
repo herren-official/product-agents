@@ -9,7 +9,7 @@ allowed-tools: ["Bash", "Read", "Grep", "Glob", "mcp__notionMCP__notion-search"]
 # GitHub PR 자동 생성
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[pr] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-pr] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 
@@ -19,9 +19,9 @@ $ARGUMENTS
 
 | 스킬 | 역할 | 해당 단계 |
 |------|------|----------|
-| `pre-pr-review` | 브랜치 전체 품질 검사 | 1단계 |
-| `branch-strategy` | 베이스 브랜치 결정 | 3단계 |
-| `notion-read` | 노션 태스크 제목 검색 | 4단계 |
+| `b2c-ios-pre-pr-review` | 브랜치 전체 품질 검사 | 1단계 |
+| `b2c-ios-branch-strategy` | 베이스 브랜치 결정 | 3단계 |
+| `b2c-ios-notion-read` | 노션 태스크 제목 검색 | 4단계 |
 
 > 각 스킬의 상세 프로세스는 해당 스킬 문서 참조
 
@@ -55,7 +55,7 @@ $ARGUMENTS
 
 ### 1단계: 동적 주입 결과 분석 및 품질 검사
 - `git fetch origin`으로 원격 상태 동기화 (동적 주입은 read-only만 수행하므로 여기서 실행)
-- `pre-pr-review` 스킬을 실행하여 브랜치 전체 품질 검사
+- `b2c-ios-pre-pr-review` 스킬을 실행하여 브랜치 전체 품질 검사
   - 에러가 있으면: 수정 후 재검사
   - 에러가 없으면: 다음 단계로
 - 커밋되지 않은 변경사항이 있으면 커밋 먼저 진행
@@ -75,7 +75,7 @@ $ARGUMENTS
 
 ### 3단계: Base 브랜치 결정
 
-> `branch-strategy` 스킬의 프로세스를 따른다
+> `b2c-ios-branch-strategy` 스킬의 프로세스를 따른다
 
 **사용자에게 반드시 확인 요청:**
 ```
@@ -89,7 +89,7 @@ PR을 생성하기 전에 base 브랜치를 확인해주세요:
 
 ### 4단계: 노션 태스크 검색 및 PR 제목 결정 (필수)
 
-> `notion-read` 스킬의 프로세스를 따른다
+> `b2c-ios-notion-read` 스킬의 프로세스를 따른다
 
 > **PR 제목은 반드시 노션 태스크 제목에서 가져와야 합니다. 임의로 작성하지 마세요.**
 
@@ -150,7 +150,7 @@ PR 제목: "[GBIZ-18147] 후기 신고 기능 구현"
 git push -u origin $(git branch --show-current)
 
 # PR 생성 (--label 플래그를 개별로 사용)
-gh pr create \
+gh b2c-ios-pr create \
   --base [사용자가 확인한 base 브랜치] \
   --title "[GBIZ-번호] 노션 태스크 제목" \
   --label "D-3" --label "작업유형라벨" \
@@ -174,7 +174,7 @@ EOF
 )"
 ```
 
-> **주의**: `gh pr create`에는 `--add-label` 플래그가 없습니다. 반드시 `--label` 또는 `-l`을 사용하세요.
+> **주의**: `gh b2c-ios-pr create`에는 `--add-label` 플래그가 없습니다. 반드시 `--label` 또는 `-l`을 사용하세요.
 > 여러 라벨은 `--label "D-3" --label "작업유형"` 형태로 개별 지정합니다.
 
 ## 금지 사항
@@ -189,7 +189,7 @@ EOF
 | 에러 | 대응 |
 |------|------|
 | 노션 태스크 검색 실패 | GBIZ 번호 확인, 수동 PR 제목 입력 요청 |
-| gh pr create 실패 | 인증/권한/브랜치 상태 확인 |
+| gh b2c-ios-pr create 실패 | 인증/권한/브랜치 상태 확인 |
 | push 실패 | 원격 브랜치 충돌 여부 확인 |
 | 라벨 미존재 | gh label list로 확인 후 유사 라벨 제안 |
 

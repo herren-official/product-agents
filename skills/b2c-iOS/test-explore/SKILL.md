@@ -6,10 +6,10 @@ disable-model-invocation: false
 allowed-tools: ["Read", "Grep", "Glob"]
 ---
 
-# /test-explore - 테스트 코드 탐색
+# /b2c-ios-test-explore - 테스트 코드 탐색
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[test-explore] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-test-explore] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 

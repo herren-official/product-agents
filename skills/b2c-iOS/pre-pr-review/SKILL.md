@@ -11,7 +11,7 @@ allowed-tools: ["Read", "Grep", "Glob", "Bash"]
 PR 생성 직전에 실행되는 브랜치 전체 종합 리뷰 스킬입니다.
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[pre-pr-review] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-pre-pr-review] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 

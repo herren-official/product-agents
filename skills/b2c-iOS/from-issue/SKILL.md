@@ -6,10 +6,10 @@ disable-model-invocation: false
 allowed-tools: ["Bash", "Read", "Grep", "Glob", "Task", "Skill", "mcp__notionMCP__notion-fetch", "mcp__notionMCP__notion-create-pages", "mcp__notionMCP__notion-duplicate-page", "mcp__notionMCP__notion-update-page"]
 ---
 
-# /from-issue - GitHub 이슈 기반 End-to-End 자동화
+# /b2c-ios-from-issue - GitHub 이슈 기반 End-to-End 자동화
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[from-issue] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-from-issue] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 
@@ -17,8 +17,8 @@ $ARGUMENTS
 
 이 스킬은 **어댑터(Adapter)** 역할만 수행한다. 실제 작업은 다음 에이전트/스킬이 담당:
 
-- **issue-analyzer 에이전트**: 이슈 분석 및 노션 카드 초안 구조화
-- **notion-create 스킬**: 노션 GBIZ 카드 실제 생성
+- **b2c-ios-issue-analyzer 에이전트**: 이슈 분석 및 노션 카드 초안 구조화
+- **b2c-ios-notion-create 스킬**: 노션 GBIZ 카드 실제 생성
 - **orchestrator 에이전트**: 이후 분석/계획/구현/테스트/PR 5-Phase 자동화
 
 본 스킬은 위 세 컴포넌트를 올바른 순서로 호출하고, 결과를 GitHub 이슈에 피드백하는 역할만 한다.
@@ -26,15 +26,15 @@ $ARGUMENTS
 ## 처리 흐름
 
 ```
-사용자: /from-issue 123
+사용자: /b2c-ios-from-issue 123
    ↓
 Step 1. gh issue view 123 (이슈 존재/상태 확인)
    ↓
-Step 2. issue-analyzer 에이전트 호출 (이슈 → 구조화된 초안)
+Step 2. b2c-ios-issue-analyzer 에이전트 호출 (이슈 → 구조화된 초안)
    ↓
 Step 3. 사용자 컨펌 (초안 검토)
    ↓
-Step 4. notion-create 스킬 호출 (GBIZ 카드 생성)
+Step 4. b2c-ios-notion-create 스킬 호출 (GBIZ 카드 생성)
    ↓
 Step 5. GitHub 이슈에 노션 링크 코멘트 등록
    ↓
@@ -74,9 +74,9 @@ gh issue view <number> --json number,title,state,url,labels
 - 이슈가 `closed` 상태면 사용자에게 진행 여부 재확인
 - 이슈 본문에 이미 PR이 연결되어 있으면(`Closes #...`, `Fixes #...`) 플래그
 
-### Step 2: issue-analyzer 에이전트 호출
+### Step 2: b2c-ios-issue-analyzer 에이전트 호출
 
-Task 도구로 `issue-analyzer` 에이전트를 실행한다.
+Task 도구로 `b2c-ios-issue-analyzer` 에이전트를 실행한다.
 
 **에이전트에게 전달할 컨텍스트:**
 - 이슈 번호/URL
@@ -88,7 +88,7 @@ Task 도구로 `issue-analyzer` 에이전트를 실행한다.
 
 ### Step 3: 사용자 컨펌
 
-issue-analyzer의 출력을 사용자에게 보여주고 확인 요청:
+b2c-ios-issue-analyzer의 출력을 사용자에게 보여주고 확인 요청:
 
 ```
 [이슈 #123 분석 결과]
@@ -108,10 +108,10 @@ issue-analyzer의 출력을 사용자에게 보여주고 확인 요청:
 
 ### Step 4: 노션 GBIZ 카드 생성
 
-`notion-create` 스킬을 Skill 도구로 실행한다.
+`b2c-ios-notion-create` 스킬을 Skill 도구로 실행한다.
 
 **전달 인자:**
-issue-analyzer 출력의 "섹션 2(노션 카드 속성)"와 "섹션 3~5(본문/Todo/참고)"를 조합한 명령 텍스트.
+b2c-ios-issue-analyzer 출력의 "섹션 2(노션 카드 속성)"와 "섹션 3~5(본문/Todo/참고)"를 조합한 명령 텍스트.
 
 **예시 호출 인자:**
 ```
@@ -157,7 +157,7 @@ Task 도구로 `orchestrator` 에이전트를 실행한다.
 
 **옵션 처리:**
 - 인자에 `skip-orchestrator`가 포함되면 이 단계를 건너뛰고 종료
-- 사용자가 수동으로 작업 계획을 확인하고 싶다고 요청하면 `orchestrator` 대신 `task-planner`만 호출하는 선택지 제공
+- 사용자가 수동으로 작업 계획을 확인하고 싶다고 요청하면 `orchestrator` 대신 `b2c-ios-task-planner`만 호출하는 선택지 제공
 
 **전달 컨텍스트:**
 - 방금 생성한 노션 페이지 URL (GBIZ-XXXXX)
@@ -190,7 +190,7 @@ EOF
 ```
 
 **이슈에 `Closes #<number>` 연결:**
-- PR 본문에 해당 문구가 포함되도록 `orchestrator`에 전달 (이미 `pr` 스킬 컨벤션에 포함되어 있음)
+- PR 본문에 해당 문구가 포함되도록 `orchestrator`에 전달 (이미 `b2c-ios-pr` 스킬 컨벤션에 포함되어 있음)
 
 ## 옵션 인자
 
@@ -202,9 +202,9 @@ EOF
 
 **사용 예:**
 ```
-/from-issue 123
-/from-issue 123 dry-run
-/from-issue https://github.com/herren-official/gongbiz-b2c-iOS/issues/123 skip-orchestrator
+/b2c-ios-from-issue 123
+/b2c-ios-from-issue 123 dry-run
+/b2c-ios-from-issue https://github.com/herren-official/gongbiz-b2c-iOS/issues/123 skip-orchestrator
 ```
 
 ## 에러 처리
@@ -215,9 +215,9 @@ EOF
 | `gh` CLI 미로그인 | `gh auth login` 안내 후 중단 |
 | 이슈 존재하지 않음 | 이슈 번호 재확인 요청 후 중단 |
 | 이슈가 closed 상태 | 사용자에게 진행 여부 확인 |
-| issue-analyzer 실패 | 에이전트 에러 메시지 표시, 수동 입력으로 전환 제안 |
+| b2c-ios-issue-analyzer 실패 | 에이전트 에러 메시지 표시, 수동 입력으로 전환 제안 |
 | 사용자 거부(N) | "작업을 중단합니다" 출력 후 종료. 노션 카드 생성 안 함 |
-| notion-create 실패 | 이슈에 실패 코멘트 등록(선택), 사용자에게 보고 |
+| b2c-ios-notion-create 실패 | 이슈에 실패 코멘트 등록(선택), 사용자에게 보고 |
 | orchestrator 실패 | 노션 일감은 유지. PR 미생성 상태로 이슈 코멘트 등록 |
 
 ## 금지 사항
@@ -238,5 +238,5 @@ EOF
 ## 주의사항
 
 - **어댑터 스킬**이다: 스킬 자체에 비즈니스 로직을 넣지 말 것. 역할이 겹치면 대응 에이전트/스킬을 확장
-- `issue-analyzer`가 코드 영향 범위를 탐색하지만, 실제 코드 수정은 `orchestrator`의 Phase 2(구현)에서만 발생
+- `b2c-ios-issue-analyzer`가 코드 영향 범위를 탐색하지만, 실제 코드 수정은 `orchestrator`의 Phase 2(구현)에서만 발생
 - GitHub 이슈 → 노션 카드는 **1:1 매핑**을 권장. 에픽급 이슈는 분석 후 "에픽으로 분해 필요" 플래그만 걸고 수동 분해 유도

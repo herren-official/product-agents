@@ -6,10 +6,10 @@ disable-model-invocation: false
 allowed-tools: ["Bash", "Read"]
 ---
 
-# /build-verify - 빌드 및 테스트 검증
+# /b2c-ios-build-verify - 빌드 및 테스트 검증
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[build-verify] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-build-verify] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 

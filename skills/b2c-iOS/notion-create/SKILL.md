@@ -6,10 +6,10 @@ disable-model-invocation: false
 allowed-tools: ["mcp__notionMCP__notion-create-pages", "mcp__notionMCP__notion-duplicate-page", "mcp__notionMCP__notion-update-page", "mcp__notionMCP__notion-fetch", "mcp__notionMCP__notion-search", "Read", "Glob"]
 ---
 
-# /notion-create - Notion 일감 생성
+# /b2c-ios-notion-create - Notion 일감 생성
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[notion-create] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-notion-create] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 

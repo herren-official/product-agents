@@ -1,7 +1,7 @@
 ---
 name: b2c-ios-pre-commit-checker
-description: "커밋 전 코드 컨벤션을 검사합니다. commit 스킬에서 자동 호출되며, 컨벤션 검사/pre-commit 요청 시에도 사용"
-argument-hint: "인자 없음 (commit 스킬에서 자동 호출되거나 단독 실행)"
+description: "커밋 전 코드 컨벤션을 검사합니다. b2c-ios-commit 스킬에서 자동 호출되며, 컨벤션 검사/pre-commit 요청 시에도 사용"
+argument-hint: "인자 없음 (b2c-ios-commit 스킬에서 자동 호출되거나 단독 실행)"
 disable-model-invocation: false
 allowed-tools: ["Read", "Grep", "Glob", "Bash"]
 ---
@@ -11,7 +11,7 @@ allowed-tools: ["Read", "Grep", "Glob", "Bash"]
 커밋 전 코드 컨벤션을 검사하는 스킬입니다.
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[pre-commit-checker] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-pre-commit-checker] 스킬이 실행되었습니다."를 출력할 것
 
 ## 검사 대상 파일
 
@@ -114,7 +114,7 @@ Read 도구로 파일을 직접 읽고 위 항목들을 분석
 다음 형식으로 보고:
 
 ```
-[pre-commit-checker] 검사 결과
+[b2c-ios-pre-commit-checker] 검사 결과
 
 --- 에러 (수정 필요) ---
 - FileName.swift:42 - Force unwrapping 발견: let value = dict["key"]!

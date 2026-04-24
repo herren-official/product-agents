@@ -6,10 +6,10 @@ disable-model-invocation: false
 allowed-tools: ["Read", "Grep", "Glob"]
 ---
 
-# /feature-explore - Feature 모듈 탐색
+# /b2c-ios-feature-explore - Feature 모듈 탐색
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[feature-explore] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-feature-explore] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 

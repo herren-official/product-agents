@@ -6,10 +6,10 @@ disable-model-invocation: false
 allowed-tools: ["mcp__notionMCP__notion-update-page", "mcp__notionMCP__notion-fetch"]
 ---
 
-# /notion-update - Notion 페이지 업데이트
+# /b2c-ios-notion-update - Notion 페이지 업데이트
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[notion-update] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-notion-update] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 

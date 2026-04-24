@@ -6,10 +6,10 @@ disable-model-invocation: false
 allowed-tools: ["mcp__notionMCP__notion-fetch", "mcp__notionMCP__notion-search"]
 ---
 
-# /notion-read - Notion 일감 읽기 및 파싱
+# /b2c-ios-notion-read - Notion 일감 읽기 및 파싱
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[notion-read] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-notion-read] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 

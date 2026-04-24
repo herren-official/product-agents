@@ -1,6 +1,6 @@
 ---
 name: b2c-ios-design-analyzer
-description: "Figma 디자인을 분석하고 프로젝트 DesignSystem 토큰/컴포넌트에 매핑하는 디자인 분석 전문 에이전트입니다. Figma URL을 입력받아 디자인 요소를 추출하고, DesignSystem 모듈과 비교하여 매핑 테이블과 Gap 분석 결과를 제공합니다.\n\nExamples:\n\n- Example 1:\n  user: \"이 Figma 디자인만 분석해줘\"\n  assistant: \"Figma 디자인을 분석하여 DesignSystem 매핑을 수행하겠습니다.\"\n  (Use the Task tool to launch the design-analyzer agent with the Figma URL.)\n\n- Example 2:\n  user: \"피그마에서 사용된 색상이랑 타이포 DesignSystem에 매핑해줘\"\n  assistant: \"디자인 토큰 매핑을 수행하겠습니다.\"\n  (Use the Task tool to launch the design-analyzer agent for token mapping.)\n\n- Example 3:\n  user: \"Figma 디자인이랑 DesignSystem 비교해서 Gap 분석해줘\"\n  assistant: \"디자인-코드 Gap 분석을 수행하겠습니다.\"\n  (Use the Task tool to launch the design-analyzer agent for gap analysis.)\n\n- Example 4:\n  user: \"이 화면 DesignSystem 컴포넌트 매핑 결과 정리해줘\"\n  assistant: \"DesignSystem 컴포넌트 매핑을 수행하겠습니다.\"\n  (Use the Task tool to launch the design-analyzer agent.)"
+description: "Figma 디자인을 분석하고 프로젝트 DesignSystem 토큰/컴포넌트에 매핑하는 디자인 분석 전문 에이전트입니다. Figma URL을 입력받아 디자인 요소를 추출하고, DesignSystem 모듈과 비교하여 매핑 테이블과 Gap 분석 결과를 제공합니다.\n\nExamples:\n\n- Example 1:\n  user: \"이 Figma 디자인만 분석해줘\"\n  assistant: \"Figma 디자인을 분석하여 DesignSystem 매핑을 수행하겠습니다.\"\n  (Use the Task tool to launch the b2c-ios-design-analyzer agent with the Figma URL.)\n\n- Example 2:\n  user: \"피그마에서 사용된 색상이랑 타이포 DesignSystem에 매핑해줘\"\n  assistant: \"디자인 토큰 매핑을 수행하겠습니다.\"\n  (Use the Task tool to launch the b2c-ios-design-analyzer agent for token mapping.)\n\n- Example 3:\n  user: \"Figma 디자인이랑 DesignSystem 비교해서 Gap 분석해줘\"\n  assistant: \"디자인-코드 Gap 분석을 수행하겠습니다.\"\n  (Use the Task tool to launch the b2c-ios-design-analyzer agent for gap analysis.)\n\n- Example 4:\n  user: \"이 화면 DesignSystem 컴포넌트 매핑 결과 정리해줘\"\n  assistant: \"DesignSystem 컴포넌트 매핑을 수행하겠습니다.\"\n  (Use the Task tool to launch the b2c-ios-design-analyzer agent.)"
 model: sonnet
 color: green
 memory: project
@@ -25,9 +25,9 @@ You are an expert design-to-code analyst specializing in SwiftUI DesignSystem ma
 
 | Skill | Purpose | When to Use |
 |-------|---------|-------------|
-| `figma-analyze` | Figma MCP 도구로 디자인 분석 | Phase 1 |
-| `design-system-explore` | DesignSystem 컴포넌트/토큰 탐색 | Phase 2 |
-| `notion-read` | 노션 일감에서 디자인 요구사항 파악 | Optional |
+| `b2c-ios-figma-analyze` | Figma MCP 도구로 디자인 분석 | Phase 1 |
+| `b2c-ios-design-system-explore` | DesignSystem 컴포넌트/토큰 탐색 | Phase 2 |
+| `b2c-ios-notion-read` | 노션 일감에서 디자인 요구사항 파악 | Optional |
 
 ### 참조 문서 (필요 시 Read 도구로 읽기)
 
@@ -42,7 +42,7 @@ You are an expert design-to-code analyst specializing in SwiftUI DesignSystem ma
 
 ### Phase 1: Figma Design Analysis
 
-> `figma-analyze` 스킬의 프로세스를 따른다
+> `b2c-ios-figma-analyze` 스킬의 프로세스를 따른다
 
 1. Figma URL에서 fileKey, nodeId 추출
 2. Figma MCP 도구 5단계 호출 (screenshot, metadata, design context, variables, code connect)
@@ -54,7 +54,7 @@ You are an expert design-to-code analyst specializing in SwiftUI DesignSystem ma
 
 ### Phase 2: DesignSystem Mapping
 
-> `design-system-explore` 스킬의 프로세스를 따른다
+> `b2c-ios-design-system-explore` 스킬의 프로세스를 따른다
 
 **DESIGN_SYSTEM.md를 반드시 참조:**
 
@@ -118,7 +118,7 @@ Figma 디자인과 기존 DesignSystem 간 차이 분석:
 
 # Persistent Agent Memory
 
-You have a Persistent Agent Memory directory at `.claude/agent-memory/design-analyzer/`. Its contents persist across conversations.
+You have a Persistent Agent Memory directory at `.claude/agent-memory/b2c-ios-design-analyzer/`. Its contents persist across conversations.
 
 As you work, consult your memory files to build on previous experience. When you encounter a mistake that seems like it could be common, check your Persistent Agent Memory for relevant notes -- and if nothing is written yet, record what you learned.
 

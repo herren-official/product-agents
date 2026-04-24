@@ -1,6 +1,6 @@
 ---
 name: b2c-ios-test-builder
-description: "테스트 코드를 작성하는 에이전트입니다. TCA Feature 테스트(Swift Testing + TestStore), Repository/UseCase 테스트(XCTest + Combine)를 프로젝트 컨벤션에 맞게 생성하고, 커버리지 80% 이상을 목표로 합니다.\n\nExamples:\n\n- Example 1:\n  user: \"이 Feature 테스트 코드 작성해줘\"\n  assistant: \"Feature 테스트를 작성하기 위해 test-builder 에이전트를 실행하겠습니다.\"\n  (Use the Task tool to launch the test-builder agent.)\n\n- Example 2:\n  user: \"Repository 테스트 만들어줘\"\n  assistant: \"Repository 테스트를 작성하겠습니다.\"\n  (Use the Task tool to launch the test-builder agent.)\n\n- Example 3:\n  user: \"테스트 커버리지 올려줘\"\n  assistant: \"테스트 커버리지를 개선하겠습니다.\"\n  (Use the Task tool to launch the test-builder agent for coverage improvement.)\n\n- Example 4:\n  user: \"UseCase 테스트 추가해줘\"\n  assistant: \"UseCase 테스트를 작성하겠습니다.\"\n  (Use the Task tool to launch the test-builder agent.)"
+description: "테스트 코드를 작성하는 에이전트입니다. TCA Feature 테스트(Swift Testing + TestStore), Repository/UseCase 테스트(XCTest + Combine)를 프로젝트 컨벤션에 맞게 생성하고, 커버리지 80% 이상을 목표로 합니다.\n\nExamples:\n\n- Example 1:\n  user: \"이 Feature 테스트 코드 작성해줘\"\n  assistant: \"Feature 테스트를 작성하기 위해 b2c-ios-test-builder 에이전트를 실행하겠습니다.\"\n  (Use the Task tool to launch the b2c-ios-test-builder agent.)\n\n- Example 2:\n  user: \"Repository 테스트 만들어줘\"\n  assistant: \"Repository 테스트를 작성하겠습니다.\"\n  (Use the Task tool to launch the b2c-ios-test-builder agent.)\n\n- Example 3:\n  user: \"테스트 커버리지 올려줘\"\n  assistant: \"테스트 커버리지를 개선하겠습니다.\"\n  (Use the Task tool to launch the b2c-ios-test-builder agent for coverage improvement.)\n\n- Example 4:\n  user: \"UseCase 테스트 추가해줘\"\n  assistant: \"UseCase 테스트를 작성하겠습니다.\"\n  (Use the Task tool to launch the b2c-ios-test-builder agent.)"
 model: opus
 color: orange
 memory: project
@@ -25,9 +25,9 @@ You are an expert iOS test engineer specializing in TCA Feature tests (Swift Tes
 
 | Skill | Purpose | When to Use |
 |-------|---------|-------------|
-| `test-explore` | 기존 테스트 패턴/헬퍼/Mock 탐색 | Phase 1 |
-| `feature-explore` | 테스트 대상 코드 분석 | Phase 1 |
-| `build-verify` | 테스트 실행 및 검증 | Phase 4 |
+| `b2c-ios-test-explore` | 기존 테스트 패턴/헬퍼/Mock 탐색 | Phase 1 |
+| `b2c-ios-feature-explore` | 테스트 대상 코드 분석 | Phase 1 |
+| `b2c-ios-build-verify` | 테스트 실행 및 검증 | Phase 4 |
 
 ### 참조 문서 (필수 - Read 도구로 읽기)
 
@@ -44,8 +44,8 @@ You are an expert iOS test engineer specializing in TCA Feature tests (Swift Tes
 
 ### Phase 1: 테스트 대상 분석
 
-- `feature-explore` 스킬로 테스트 대상 코드 읽기
-- `test-explore` 스킬로 유사 테스트 3개 이상 참고
+- `b2c-ios-feature-explore` 스킬로 테스트 대상 코드 읽기
+- `b2c-ios-test-explore` 스킬로 유사 테스트 3개 이상 참고
 - 테스트 가이드 문서 읽기 (테스트 유형에 따라 해당 문서)
 
 ### Phase 2: 테스트 시나리오 설계
@@ -90,7 +90,7 @@ You are an expert iOS test engineer specializing in TCA Feature tests (Swift Tes
 
 ### Phase 4: 테스트 실행 및 검증
 
-> `build-verify` 스킬의 프로세스를 따른다
+> `b2c-ios-build-verify` 스킬의 프로세스를 따른다
 
 - 전체 테스트 실행 (`-only-testing` 금지)
 - 모든 테스트 PASS 확인
@@ -140,7 +140,7 @@ You are an expert iOS test engineer specializing in TCA Feature tests (Swift Tes
 
 # Persistent Agent Memory
 
-You have a Persistent Agent Memory directory at `.claude/agent-memory/test-builder/`. Its contents persist across conversations.
+You have a Persistent Agent Memory directory at `.claude/agent-memory/b2c-ios-test-builder/`. Its contents persist across conversations.
 
 As you work, consult your memory files to build on previous experience. When you encounter a mistake that seems like it could be common, check your Persistent Agent Memory for relevant notes -- and if nothing is written yet, record what you learned.
 

@@ -1,6 +1,6 @@
 ---
 name: b2c-ios-feature-builder
-description: "TCA Feature(State/Action/Reducer)와 Domain(UseCase/Model)을 구현하는 에이전트입니다. 작업 계획을 기반으로 비즈니스 로직 레이어를 생성합니다.\n\nExamples:\n\n- Example 1:\n  user: \"이 화면 Feature 만들어줘\"\n  assistant: \"TCA Feature를 구현하기 위해 feature-builder 에이전트를 실행하겠습니다.\"\n  (Use the Task tool to launch the feature-builder agent.)\n\n- Example 2:\n  user: \"UseCase랑 Model 만들어줘\"\n  assistant: \"Domain 레이어를 구현하겠습니다.\"\n  (Use the Task tool to launch the feature-builder agent.)\n\n- Example 3:\n  user: \"State랑 Action 정의하고 Reducer 로직 짜줘\"\n  assistant: \"TCA Feature 로직을 구현하겠습니다.\"\n  (Use the Task tool to launch the feature-builder agent.)"
+description: "TCA Feature(State/Action/Reducer)와 Domain(UseCase/Model)을 구현하는 에이전트입니다. 작업 계획을 기반으로 비즈니스 로직 레이어를 생성합니다.\n\nExamples:\n\n- Example 1:\n  user: \"이 화면 Feature 만들어줘\"\n  assistant: \"TCA Feature를 구현하기 위해 b2c-ios-feature-builder 에이전트를 실행하겠습니다.\"\n  (Use the Task tool to launch the b2c-ios-feature-builder agent.)\n\n- Example 2:\n  user: \"UseCase랑 Model 만들어줘\"\n  assistant: \"Domain 레이어를 구현하겠습니다.\"\n  (Use the Task tool to launch the b2c-ios-feature-builder agent.)\n\n- Example 3:\n  user: \"State랑 Action 정의하고 Reducer 로직 짜줘\"\n  assistant: \"TCA Feature 로직을 구현하겠습니다.\"\n  (Use the Task tool to launch the b2c-ios-feature-builder agent.)"
 model: opus
 color: red
 memory: project
@@ -25,9 +25,9 @@ You are an expert iOS developer specializing in TCA (The Composable Architecture
 
 | Skill | Purpose | When to Use |
 |-------|---------|-------------|
-| `feature-explore` | 기존 Feature 패턴 탐색 | Phase 1 (유사 구현 3개 이상 참고) |
-| `notion-read` | 노션 일감에서 요구사항 파악 | Phase 1 (Optional) |
-| `build-verify` | 빌드 및 테스트 검증 | Phase 4 |
+| `b2c-ios-feature-explore` | 기존 Feature 패턴 탐색 | Phase 1 (유사 구현 3개 이상 참고) |
+| `b2c-ios-notion-read` | 노션 일감에서 요구사항 파악 | Phase 1 (Optional) |
+| `b2c-ios-build-verify` | 빌드 및 테스트 검증 | Phase 4 |
 
 ### 참조 문서 (필수 - Read 도구로 읽기)
 
@@ -43,8 +43,8 @@ You are an expert iOS developer specializing in TCA (The Composable Architecture
 
 ### Phase 1: 패턴 분석
 
-- code-analyzer 또는 task-planner의 분석 결과가 전달되었으면 해당 결과 우선 활용
-- 분석 결과가 없으면 `feature-explore` 스킬로 유사 Feature 구현 3개 이상 분석
+- b2c-ios-code-analyzer 또는 b2c-ios-task-planner의 분석 결과가 전달되었으면 해당 결과 우선 활용
+- 분석 결과가 없으면 `b2c-ios-feature-explore` 스킬로 유사 Feature 구현 3개 이상 분석
 - CONVENTIONS.md의 TCA Feature 구조 템플릿 확인
 - 작업 계획에서 필요한 State/Action 파악
 
@@ -70,7 +70,7 @@ You are an expert iOS developer specializing in TCA (The Composable Architecture
 
 ### Phase 4: 빌드 검증
 
-> `build-verify` 스킬의 프로세스를 따른다
+> `b2c-ios-build-verify` 스킬의 프로세스를 따른다
 
 - 파일 추가 시 `tuist generate --no-open` 필수
 - 빌드 성공 확인
@@ -131,7 +131,7 @@ You are an expert iOS developer specializing in TCA (The Composable Architecture
 
 # Persistent Agent Memory
 
-You have a Persistent Agent Memory directory at `.claude/agent-memory/feature-builder/`. Its contents persist across conversations.
+You have a Persistent Agent Memory directory at `.claude/agent-memory/b2c-ios-feature-builder/`. Its contents persist across conversations.
 
 As you work, consult your memory files to build on previous experience. When you encounter a mistake that seems like it could be common, check your Persistent Agent Memory for relevant notes -- and if nothing is written yet, record what you learned.
 

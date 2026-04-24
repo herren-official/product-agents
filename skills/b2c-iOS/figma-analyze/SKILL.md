@@ -6,10 +6,10 @@ disable-model-invocation: false
 allowed-tools: ["Read", "Grep", "Glob", "mcp__figma-dev-mode-mcp-server__get_screenshot", "mcp__figma-dev-mode-mcp-server__get_metadata", "mcp__figma-dev-mode-mcp-server__get_design_context", "mcp__figma-dev-mode-mcp-server__get_variable_defs", "mcp__figma-dev-mode-mcp-server__get_code_connect_map"]
 ---
 
-# /figma-analyze - Figma 디자인 분석
+# /b2c-ios-figma-analyze - Figma 디자인 분석
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[figma-analyze] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-figma-analyze] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 

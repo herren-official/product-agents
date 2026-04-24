@@ -9,7 +9,7 @@ allowed-tools: ["Bash", "Read", "Edit", "Grep", "Glob"]
 # PR 코멘트 리뷰 반영
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[review-fix] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-review-fix] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 
@@ -22,7 +22,7 @@ $ARGUMENTS
 !`git branch --show-current | grep -oE "GBIZ-[0-9]+" | head -1 || echo "GBIZ 번호 없음"`
 
 ### 현재 브랜치의 PR 번호
-!`gh pr list --head "$(git branch --show-current)" --json number,title,url --jq '.[] | "#\(.number) \(.title) \(.url)"' 2>/dev/null || echo "PR 없음"`
+!`gh b2c-ios-pr list --head "$(git branch --show-current)" --json number,title,url --jq '.[] | "#\(.number) \(.title) \(.url)"' 2>/dev/null || echo "PR 없음"`
 
 ### 커밋되지 않은 변경사항
 !`git status --porcelain`
@@ -155,7 +155,7 @@ PR 코멘트 분석 결과:
 
 모든 수정이 완료되면:
 
-1. **pre-commit-checker 실행**: 변경된 파일에 대해 컨벤션 검사 수행
+1. **b2c-ios-pre-commit-checker 실행**: 변경된 파일에 대해 컨벤션 검사 수행
    - 위반 사항 발견 시 수정 후 재검사
    - 모든 검사 통과 확인
 
@@ -165,7 +165,7 @@ PR 코멘트 분석 결과:
    - 커밋 메시지 형식:
 
 ```bash
-git commit -m "$(cat <<'EOF'
+git b2c-ios-commit -m "$(cat <<'EOF'
 review: PR 코드리뷰 반영
 
 - 수정 내용 1
@@ -208,7 +208,7 @@ gh api repos/{owner}/{repo}/issues/{pr_number}/comments \
 
 **수정 완료 답글:**
 ```
-@{reviewer_login} [{short_hash}](https://github.com/{owner}/{repo}/commit/{full_hash})에서 {수정 내용 요약}으로 변경했습니다.
+@{reviewer_login} [{short_hash}](https://github.com/{owner}/{repo}/b2c-ios-commit/{full_hash})에서 {수정 내용 요약}으로 변경했습니다.
 
 재확인 부탁합니다.
 by. Claude
@@ -216,7 +216,7 @@ by. Claude
 
 **이미 수정된 경우:**
 ```
-@{reviewer_login} [{short_hash}](https://github.com/{owner}/{repo}/commit/{full_hash})에서 이미 수정되었습니다.
+@{reviewer_login} [{short_hash}](https://github.com/{owner}/{repo}/b2c-ios-commit/{full_hash})에서 이미 수정되었습니다.
 
 재확인 부탁합니다.
 by. Claude

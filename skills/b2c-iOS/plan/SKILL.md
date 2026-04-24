@@ -6,10 +6,10 @@ disable-model-invocation: false
 allowed-tools: ["Bash", "Read", "Grep", "Glob", "mcp__notionMCP__notion-fetch", "mcp__notionMCP__notion-update-page", "mcp__notionMCP__notion-search"]
 ---
 
-# /plan - 노션 일감 작업 계획 자동 수립
+# /b2c-ios-plan - 노션 일감 작업 계획 자동 수립
 
 ## 실행 알림
-이 스킬이 실행되면 가장 먼저 "[plan] 스킬이 실행되었습니다."를 출력할 것
+이 스킬이 실행되면 가장 먼저 "[b2c-ios-plan] 스킬이 실행되었습니다."를 출력할 것
 
 $ARGUMENTS
 
@@ -19,9 +19,9 @@ $ARGUMENTS
 
 | 스킬 | 역할 | 해당 단계 |
 |------|------|----------|
-| `notion-read` | 노션 일감 읽기 및 파싱 | 1단계 |
-| `branch-strategy` | 브랜치 전략 수립 | 3단계 |
-| `notion-update` | 노션 페이지 업데이트 | 6단계 |
+| `b2c-ios-notion-read` | 노션 일감 읽기 및 파싱 | 1단계 |
+| `b2c-ios-branch-strategy` | 브랜치 전략 수립 | 3단계 |
+| `b2c-ios-notion-update` | 노션 페이지 업데이트 | 6단계 |
 
 > 각 스킬의 상세 프로세스는 해당 스킬 문서 참조
 
@@ -40,7 +40,7 @@ $ARGUMENTS
 
 ### 1단계: 노션 일감 분석
 
-> `notion-read` 스킬의 프로세스를 따른다
+> `b2c-ios-notion-read` 스킬의 프로세스를 따른다
 
 - notionMCP의 notion-fetch 도구로 페이지 정보 가져오기
 - GBIZ 번호 확인 (`userDefined:ID` 프로퍼티)
@@ -61,7 +61,7 @@ $ARGUMENTS
 
 ### 3단계: Git 전략 수립
 
-> `branch-strategy` 스킬의 프로세스를 따른다 (베이스 브랜치, 브랜치명, PR 타겟 결정)
+> `b2c-ios-branch-strategy` 스킬의 프로세스를 따른다 (베이스 브랜치, 브랜치명, PR 타겟 결정)
 
 ### 4단계: 작업 계획 상세화
 - [NOTION_TASK_PLANNING.md](.docs/NOTION_TASK_PLANNING.md) 템플릿 참고
@@ -83,7 +83,7 @@ $ARGUMENTS
 
 ### 6단계: 노션 문서 업데이트
 
-> `notion-update` 스킬의 프로세스를 따른다
+> `b2c-ios-notion-update` 스킬의 프로세스를 따른다
 
 - 사용자 승인 후 노션 페이지에 작업 계획 업데이트
 - [NOTION_TASK_GUIDE.md](.docs/NOTION_TASK_GUIDE.md) 참고하여 형식 결정

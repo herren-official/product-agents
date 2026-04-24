@@ -132,3 +132,192 @@ agents:
     skill_path: "~/git/product-agents/08-operations/incident-analyzer.md"
     scope: "global"
     timeout_seconds: 180
+
+  # ── Service: gongbiz-b2c-iOS ─────────────────────────────────────
+  - id: "b2c-ios-planning-orchestrator"
+    name: "B2C iOS Planning Orchestrator"
+    tags: ["inception", "planning", "b2c-ios", "figma", "notion"]
+    provider: "bedrock"
+    model: "claude-opus-4-6"
+    skill_path: "~/git/product-agents/01-inception/b2c-ios-planning-orchestrator.md"
+    scope: "service:gongbiz-b2c-iOS"
+    timeout_seconds: 300
+
+  - id: "b2c-ios-task-planner"
+    name: "B2C iOS Task Planner"
+    tags: ["spec", "planning", "b2c-ios", "notion"]
+    provider: "bedrock"
+    model: "claude-opus-4-6"
+    skill_path: "~/git/product-agents/02-spec/b2c-ios-task-planner.md"
+    scope: "service:gongbiz-b2c-iOS"
+    timeout_seconds: 240
+
+  - id: "b2c-ios-code-analyzer"
+    name: "B2C iOS Code Analyzer"
+    tags: ["plan", "analysis", "b2c-ios", "tca"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/03-plan/b2c-ios-code-analyzer.md"
+    scope: "service:gongbiz-b2c-iOS"
+    timeout_seconds: 180
+
+  - id: "b2c-ios-design-analyzer"
+    name: "B2C iOS Design Analyzer"
+    tags: ["plan", "design", "b2c-ios", "figma", "design-system"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/03-plan/b2c-ios-design-analyzer.md"
+    scope: "service:gongbiz-b2c-iOS"
+    timeout_seconds: 180
+
+  - id: "b2c-ios-feature-builder"
+    name: "B2C iOS Feature Builder"
+    tags: ["build", "b2c-ios", "tca", "swift"]
+    provider: "bedrock"
+    model: "claude-opus-4-6"
+    skill_path: "~/git/product-agents/04-build/b2c-ios-feature-builder.md"
+    scope: "service:gongbiz-b2c-iOS"
+    timeout_seconds: 240
+
+  - id: "b2c-ios-ui-builder"
+    name: "B2C iOS UI Builder"
+    tags: ["build", "b2c-ios", "swiftui", "design-system"]
+    provider: "bedrock"
+    model: "claude-opus-4-6"
+    skill_path: "~/git/product-agents/04-build/b2c-ios-ui-builder.md"
+    scope: "service:gongbiz-b2c-iOS"
+    timeout_seconds: 240
+
+  - id: "b2c-ios-network-builder"
+    name: "B2C iOS Network Builder"
+    tags: ["build", "b2c-ios", "network", "swift"]
+    provider: "bedrock"
+    model: "claude-opus-4-6"
+    skill_path: "~/git/product-agents/04-build/b2c-ios-network-builder.md"
+    scope: "service:gongbiz-b2c-iOS"
+    timeout_seconds: 180
+
+  - id: "b2c-ios-test-builder"
+    name: "B2C iOS Test Builder"
+    tags: ["test", "b2c-ios", "swift", "tca"]
+    provider: "bedrock"
+    model: "claude-opus-4-6"
+    skill_path: "~/git/product-agents/05-test/b2c-ios-test-builder.md"
+    scope: "service:gongbiz-b2c-iOS"
+    timeout_seconds: 240
+
+  - id: "b2c-ios-docs-reviewer"
+    name: "B2C iOS Docs Reviewer"
+    tags: ["review", "b2c-ios", "docs"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/06-review/b2c-ios-docs-reviewer.md"
+    scope: "service:gongbiz-b2c-iOS"
+    timeout_seconds: 180
+
+  - id: "b2c-ios-git-reviewer"
+    name: "B2C iOS Git Reviewer"
+    tags: ["ship", "b2c-ios", "git", "pr"]
+    provider: "bedrock"
+    model: "claude-opus-4-6"
+    skill_path: "~/git/product-agents/07-ship/b2c-ios-git-reviewer.md"
+    scope: "service:gongbiz-b2c-iOS"
+    timeout_seconds: 240
+
+skills:
+  # ── Service: gongbiz-b2c-iOS ─────────────────────────────────────
+  - id: "b2c-ios-plan"
+    name: "B2C iOS Plan"
+    tags: ["inception", "spec", "b2c-ios", "notion"]
+    path: "~/git/product-agents/skills/b2c-iOS/plan/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-notion-read"
+    name: "B2C iOS Notion Read"
+    tags: ["b2c-ios", "notion"]
+    path: "~/git/product-agents/skills/b2c-iOS/notion-read/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-notion-update"
+    name: "B2C iOS Notion Update"
+    tags: ["b2c-ios", "notion"]
+    path: "~/git/product-agents/skills/b2c-iOS/notion-update/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-notion-create"
+    name: "B2C iOS Notion Create"
+    tags: ["b2c-ios", "notion"]
+    path: "~/git/product-agents/skills/b2c-iOS/notion-create/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-figma-analyze"
+    name: "B2C iOS Figma Analyze"
+    tags: ["plan", "b2c-ios", "figma", "design-system"]
+    path: "~/git/product-agents/skills/b2c-iOS/figma-analyze/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-feature-explore"
+    name: "B2C iOS Feature Explore"
+    tags: ["plan", "build", "b2c-ios", "tca"]
+    path: "~/git/product-agents/skills/b2c-iOS/feature-explore/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-test-explore"
+    name: "B2C iOS Test Explore"
+    tags: ["test", "b2c-ios", "tca"]
+    path: "~/git/product-agents/skills/b2c-iOS/test-explore/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-design-system-explore"
+    name: "B2C iOS Design System Explore"
+    tags: ["build", "b2c-ios", "design-system"]
+    path: "~/git/product-agents/skills/b2c-iOS/design-system-explore/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-build-verify"
+    name: "B2C iOS Build Verify"
+    tags: ["build", "b2c-ios", "tuist", "xcodebuild"]
+    path: "~/git/product-agents/skills/b2c-iOS/build-verify/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-docs-review"
+    name: "B2C iOS Docs Review"
+    tags: ["review", "b2c-ios", "docs"]
+    path: "~/git/product-agents/skills/b2c-iOS/docs-review/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-pre-commit-checker"
+    name: "B2C iOS Pre-Commit Checker"
+    tags: ["review", "b2c-ios", "convention"]
+    path: "~/git/product-agents/skills/b2c-iOS/pre-commit-checker/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-pre-pr-review"
+    name: "B2C iOS Pre-PR Review"
+    tags: ["review", "b2c-ios", "pr"]
+    path: "~/git/product-agents/skills/b2c-iOS/pre-pr-review/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-branch-strategy"
+    name: "B2C iOS Branch Strategy"
+    tags: ["ship", "b2c-ios", "git"]
+    path: "~/git/product-agents/skills/b2c-iOS/branch-strategy/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-commit"
+    name: "B2C iOS Commit"
+    tags: ["ship", "b2c-ios", "git"]
+    path: "~/git/product-agents/skills/b2c-iOS/commit/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-pr"
+    name: "B2C iOS PR"
+    tags: ["ship", "b2c-ios", "git", "pr"]
+    path: "~/git/product-agents/skills/b2c-iOS/pr/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-review-fix"
+    name: "B2C iOS Review Fix"
+    tags: ["ship", "b2c-ios", "pr"]
+    path: "~/git/product-agents/skills/b2c-iOS/review-fix/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"

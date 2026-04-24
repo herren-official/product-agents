@@ -233,6 +233,43 @@ agents:
     scope: "service:gongbiz-b2c-iOS"
     timeout_seconds: 240
 
+  # ── Service: gongbiz-b2c-android ─────────────────────────────────
+  - id: "b2c-android-build-checker"
+    name: "B2C Android Build Checker"
+    tags: ["build", "b2c-android", "gradle", "lint"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/04-build/b2c-android-build-checker.md"
+    scope: "service:gongbiz-b2c-android"
+    timeout_seconds: 300
+
+  - id: "b2c-android-unit-tester"
+    name: "B2C Android Unit Tester"
+    tags: ["test", "b2c-android", "junit5", "mockk", "turbine"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/05-test/b2c-android-unit-tester.md"
+    scope: "service:gongbiz-b2c-android"
+    timeout_seconds: 600
+
+  - id: "b2c-android-resource-cleaner"
+    name: "B2C Android Resource Cleaner"
+    tags: ["review", "b2c-android", "resources", "cleanup"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/06-review/b2c-android-resource-cleaner.md"
+    scope: "service:gongbiz-b2c-android"
+    timeout_seconds: 600
+
+  - id: "b2c-android-crashlytics-analyzer"
+    name: "B2C Android Crashlytics Analyzer"
+    tags: ["operations", "b2c-android", "crashlytics", "bigquery"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/08-operations/b2c-android-crashlytics-analyzer.md"
+    scope: "service:gongbiz-b2c-android"
+    timeout_seconds: 300
+
 skills:
   # ── Service: gongbiz-b2c-iOS ─────────────────────────────────────
   - id: "b2c-ios-plan"
@@ -342,3 +379,94 @@ skills:
     tags: ["inception", "b2c-ios", "github", "triage"]
     path: "~/git/product-agents/skills/b2c-iOS/triage-issues/SKILL.md"
     scope: "service:gongbiz-b2c-iOS"
+
+  # ── Service: gongbiz-b2c-android ─────────────────────────────────
+  - id: "b2c-android-prd"
+    name: "B2C Android PRD"
+    tags: ["spec", "b2c-android", "documentation"]
+    path: "~/git/product-agents/skills/b2c-Android/prd/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-analyze-module"
+    name: "B2C Android Analyze Module"
+    tags: ["plan", "b2c-android", "analysis"]
+    path: "~/git/product-agents/skills/b2c-Android/analyze-module/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-explain-flow"
+    name: "B2C Android Explain Flow"
+    tags: ["plan", "b2c-android", "analysis"]
+    path: "~/git/product-agents/skills/b2c-Android/explain-flow/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-add-event"
+    name: "B2C Android Add Event"
+    tags: ["build", "b2c-android", "appsflyer", "analytics"]
+    path: "~/git/product-agents/skills/b2c-Android/add-event/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-create-api"
+    name: "B2C Android Create API"
+    tags: ["build", "b2c-android", "retrofit", "api"]
+    path: "~/git/product-agents/skills/b2c-Android/create-api/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-create-feature"
+    name: "B2C Android Create Feature"
+    tags: ["build", "b2c-android", "scaffolding", "mvi"]
+    path: "~/git/product-agents/skills/b2c-Android/create-feature/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-string-resource"
+    name: "B2C Android String Resource"
+    tags: ["build", "b2c-android", "resources", "i18n"]
+    path: "~/git/product-agents/skills/b2c-Android/string-resource/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-create-mock-data"
+    name: "B2C Android Create Mock Data"
+    tags: ["test", "b2c-android", "mockwebserver", "fixture"]
+    path: "~/git/product-agents/skills/b2c-Android/create-mock-data/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-test-setup"
+    name: "B2C Android Test Setup"
+    tags: ["test", "b2c-android", "notion"]
+    path: "~/git/product-agents/skills/b2c-Android/test-setup/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-review-pr"
+    name: "B2C Android Review PR"
+    tags: ["review", "b2c-android", "pr"]
+    path: "~/git/product-agents/skills/b2c-Android/review-pr/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-create-branch"
+    name: "B2C Android Create Branch"
+    tags: ["ship", "b2c-android", "git", "notion"]
+    path: "~/git/product-agents/skills/b2c-Android/create-branch/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-create-commit"
+    name: "B2C Android Create Commit"
+    tags: ["ship", "b2c-android", "git"]
+    path: "~/git/product-agents/skills/b2c-Android/create-commit/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-create-pr"
+    name: "B2C Android Create PR"
+    tags: ["ship", "b2c-android", "git", "pr", "notion"]
+    path: "~/git/product-agents/skills/b2c-Android/create-pr/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-my-pr"
+    name: "B2C Android My PR"
+    tags: ["ship", "b2c-android", "pr"]
+    path: "~/git/product-agents/skills/b2c-Android/my-pr/SKILL.md"
+    scope: "service:gongbiz-b2c-android"
+
+  - id: "b2c-android-ship"
+    name: "B2C Android Ship"
+    tags: ["ship", "b2c-android", "orchestrator"]
+    path: "~/git/product-agents/skills/b2c-Android/ship/SKILL.md"
+    scope: "service:gongbiz-b2c-android"

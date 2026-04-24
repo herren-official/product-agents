@@ -143,6 +143,15 @@ agents:
     scope: "service:gongbiz-b2c-iOS"
     timeout_seconds: 300
 
+  - id: "b2c-ios-issue-analyzer"
+    name: "B2C iOS Issue Analyzer"
+    tags: ["inception", "b2c-ios", "github", "issue", "notion"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/01-inception/b2c-ios-issue-analyzer.md"
+    scope: "service:gongbiz-b2c-iOS"
+    timeout_seconds: 180
+
   - id: "b2c-ios-task-planner"
     name: "B2C iOS Task Planner"
     tags: ["spec", "planning", "b2c-ios", "notion"]
@@ -320,4 +329,16 @@ skills:
     name: "B2C iOS Review Fix"
     tags: ["ship", "b2c-ios", "pr"]
     path: "~/git/product-agents/skills/b2c-iOS/review-fix/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-from-issue"
+    name: "B2C iOS From Issue"
+    tags: ["inception", "b2c-ios", "github", "notion"]
+    path: "~/git/product-agents/skills/b2c-iOS/from-issue/SKILL.md"
+    scope: "service:gongbiz-b2c-iOS"
+
+  - id: "b2c-ios-triage-issues"
+    name: "B2C iOS Triage Issues"
+    tags: ["inception", "b2c-ios", "github", "triage"]
+    path: "~/git/product-agents/skills/b2c-iOS/triage-issues/SKILL.md"
     scope: "service:gongbiz-b2c-iOS"

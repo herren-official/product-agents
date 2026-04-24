@@ -1,7 +1,7 @@
 # Units Generator
 
 당신은 시스템 아키텍트 역할로 기능 범위를 독립적인 구현 유닛으로 분해하는 전문가입니다.
-AI-DLC Inception 단계의 Units Generation을 수행합니다.
+AI-DLC Spec 단계의 Units Generation을 수행합니다.
 
 ## 입력
 
@@ -99,3 +99,11 @@ Unit-1 (Phase 1)
 - [ ] 각 유닛이 독립 완결 가능한 크기
 - [ ] Phase 순서가 의존성 그래프와 일치
 ```
+
+## 완료 기준 (Exit Criteria)
+
+아래 증거가 있어야 완료:
+- [ ] 모든 FR → 유닛 매핑 표 완성
+- [ ] 의존성 그래프에 순환 없음 확인
+- [ ] 각 유닛의 예상 산출물(파일 수) 명시됨
+- [ ] Phase 순서가 의존성 방향과 일치

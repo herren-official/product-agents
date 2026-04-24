@@ -15,35 +15,27 @@ AI-DLC 개선 및 통합 관련 백로그.
     → task-master가 작업 트리로 자동 분해
     → task-master start → Claude Code 실행
     → CLAUDE.md 로드 → services/*.md 참조
-    → construction 공정: code-planner → kotlin-reviewer
+    → 02-spec: units-generator → spec-writer
+    → 03-plan: code-planner → functional-designer
   ```
-- **검증 방법**: `npx task-master init`을 instaget-server 또는 gongbiz-crm-b2b-backend 에서 시범 실행
+- **검증 방법**: `npx task-master init`을 instaget-server 또는 gongbiz-crm-b2b-backend에서 시범 실행
 - **판단 기준**: Brief → 작업 분해 품질이 units-generator 수준인가?
 
 ---
 
 ## 🏗️ 에이전트 보강
 
-### 02-construction
-- [ ] `debugger.md` — 에러 메시지 → wiki 탐색 → 원인 진단 → 수정 → 검증 (Cline debugging 패턴)
+### 03-plan
+- [ ] `architect.md` — 신규 서비스 전체 아키텍처 설계 (모놀리스 → 마이크로서비스 전환 등 대규모 변경 대응)
 
-### 03-operations (현재 비어있음)
-- [ ] `incident-analyzer.md` — Sentry 이슈 대응 에이전트
-  - **플로우**:
-    ```
-    Sentry 이슈 URL 또는 에러 본문 입력
-      → 에러 타입 / 스택트레이스 파싱
-      → wiki 탐색: 관련 클래스/모듈 식별
-      → 소스 드릴다운: 실제 코드 확인 (최소한)
-      → 원인 가설 도출 (재현 조건 포함)
-      → 영향 범위: 동일 패턴 다른 경로 존재 여부
-      → 대응 방안: 핫픽스 범위 + 체크리스트 출력
-    ```
-  - **출력물**: 원인 분석 + 수정 대상 파일/라인 + 재발 방지 체크리스트
+### 04-build
+- [ ] `migration-planner.md` — DB 마이그레이션 스크립트 설계 + 롤백 전략
+
+### 05-test
+- [ ] `e2e-planner.md` — Playwright E2E 시나리오 설계 (핵심 흐름 기준)
 
 ---
 
 ## 📋 서비스 매핑 보완
 
-- [ ] `services/gongbiz-b2c.md` — construction 에이전트 미비 (현재 inception만 있음)
-- [ ] `services/fineadple.md` — construction 에이전트 미비
+- [ ] `services/gongbiz-b2c.md` — 03-plan 에이전트 미비 (Kotlin 백엔드 레포 추가 예정)

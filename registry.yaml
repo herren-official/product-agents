@@ -1,5 +1,5 @@
 agents:
-  # ── Inception 공정 ──────────────────────────────────────────────
+  # ── 01 Inception ─────────────────────────────────────────────────
   - id: "requirements-analyst"
     name: "Requirements Analyst"
     tags: ["inception", "requirements"]
@@ -18,57 +18,117 @@ agents:
     scope: "global"
     timeout_seconds: 180
 
-  - id: "units-generator"
-    name: "Units Generator"
-    tags: ["inception", "planning"]
-    provider: "bedrock"
-    model: "claude-sonnet-4-6"
-    skill_path: "~/git/product-agents/01-inception/units-generator.md"
-    scope: "global"
-    timeout_seconds: 120
-
   - id: "cross-domain-checker"
     name: "Cross-Domain Reference Checker"
-    tags: ["inception", "checker", "herren"]
+    tags: ["inception", "checker"]
     provider: "bedrock"
     model: "claude-sonnet-4-6"
     skill_path: "~/git/product-agents/01-inception/cross-domain-checker.md"
     scope: "global"
     timeout_seconds: 120
 
-  # ── Construction 공정 ───────────────────────────────────────────
-  - id: "code-planner"
-    name: "Code Planner"
-    tags: ["construction", "planning", "analysis"]
+  # ── 02 Spec ──────────────────────────────────────────────────────
+  - id: "units-generator"
+    name: "Units Generator"
+    tags: ["spec", "planning"]
     provider: "bedrock"
     model: "claude-sonnet-4-6"
-    skill_path: "~/git/product-agents/02-construction/code-planner.md"
+    skill_path: "~/git/product-agents/02-spec/units-generator.md"
+    scope: "global"
+    timeout_seconds: 120
+
+  - id: "spec-writer"
+    name: "Spec Writer"
+    tags: ["spec", "documentation"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/02-spec/spec-writer.md"
+    scope: "global"
+    timeout_seconds: 120
+
+  # ── 03 Plan ──────────────────────────────────────────────────────
+  - id: "code-planner"
+    name: "Code Planner"
+    tags: ["plan", "analysis"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/03-plan/code-planner.md"
     scope: "global"
     timeout_seconds: 180
 
   - id: "functional-designer"
     name: "Functional Designer"
-    tags: ["construction", "design"]
+    tags: ["plan", "design"]
     provider: "bedrock"
     model: "claude-sonnet-4-6"
-    skill_path: "~/git/product-agents/02-construction/functional-designer.md"
+    skill_path: "~/git/product-agents/03-plan/functional-designer.md"
     scope: "global"
     timeout_seconds: 180
 
-  - id: "kotlin-reviewer"
-    name: "Kotlin Code Reviewer"
-    tags: ["construction", "reviewer", "kotlin", "backend"]
+  # ── 04 Build ─────────────────────────────────────────────────────
+  - id: "debugger"
+    name: "Debugger"
+    tags: ["build", "debug"]
     provider: "bedrock"
     model: "claude-sonnet-4-6"
-    skill_path: "~/git/product-agents/02-construction/kotlin-reviewer.md"
+    skill_path: "~/git/product-agents/04-build/debugger.md"
+    scope: "global"
+    timeout_seconds: 180
+
+  # ── 05 Test ──────────────────────────────────────────────────────
+  - id: "tester"
+    name: "Tester"
+    tags: ["test"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/05-test/tester.md"
+    scope: "global"
+    timeout_seconds: 180
+
+  # ── 06 Review ────────────────────────────────────────────────────
+  - id: "kotlin-reviewer"
+    name: "Kotlin Code Reviewer"
+    tags: ["review", "kotlin", "backend"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/06-review/kotlin-reviewer.md"
     scope: "global"
     timeout_seconds: 120
 
   - id: "typescript-reviewer"
     name: "TypeScript Code Reviewer"
-    tags: ["construction", "reviewer", "typescript", "frontend"]
+    tags: ["review", "typescript", "frontend"]
     provider: "bedrock"
     model: "claude-sonnet-4-6"
-    skill_path: "~/git/product-agents/02-construction/typescript-reviewer.md"
+    skill_path: "~/git/product-agents/06-review/typescript-reviewer.md"
     scope: "global"
     timeout_seconds: 120
+
+  - id: "code-simplifier"
+    name: "Code Simplifier"
+    tags: ["review", "quality"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/06-review/code-simplifier.md"
+    scope: "global"
+    timeout_seconds: 120
+
+  # ── 07 Ship ──────────────────────────────────────────────────────
+  - id: "ship-checklist"
+    name: "Ship Checklist"
+    tags: ["ship", "deploy"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/07-ship/ship-checklist.md"
+    scope: "global"
+    timeout_seconds: 60
+
+  # ── 08 Operations ────────────────────────────────────────────────
+  - id: "incident-analyzer"
+    name: "Incident Analyzer"
+    tags: ["operations", "incident", "sentry"]
+    provider: "bedrock"
+    model: "claude-sonnet-4-6"
+    skill_path: "~/git/product-agents/08-operations/incident-analyzer.md"
+    scope: "global"
+    timeout_seconds: 180

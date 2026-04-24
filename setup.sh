@@ -35,8 +35,13 @@ link_agents() {
 
 echo "🔗 심볼릭 링크 생성 중..."
 link_agents "01-inception"
-link_agents "02-construction"
-link_agents "03-operations"
+link_agents "02-spec"
+link_agents "03-plan"
+link_agents "04-build"
+link_agents "05-test"
+link_agents "06-review"
+link_agents "07-ship"
+link_agents "08-operations"
 
 echo ""
 echo "완료: $(ls "$AGENTS_DIR"/*.md 2>/dev/null | wc -l | tr -d ' ')개 에이전트 연결됨"

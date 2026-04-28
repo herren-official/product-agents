@@ -849,3 +849,22 @@ skills:
     tags: ["build", "crm-ios", "orchestrator"]
     path: "~/git/product-agents/skills/crm-iOS/task-executor/SKILL.md"
     scope: "service:gongbiz-crm-iOS"
+
+  # ── Service: gongbiz-b2c-backend ─────────────────────────────────
+  - id: "b2c-backend-aws-mfa"
+    name: "B2C Backend AWS MFA"
+    tags: ["operations", "b2c-backend", "aws", "mfa"]
+    path: "~/git/product-agents/skills/b2c-backend/aws-mfa/SKILL.md"
+    scope: "service:gongbiz-b2c-backend"
+
+  - id: "b2c-backend-cloudwatch"
+    name: "B2C Backend CloudWatch"
+    tags: ["operations", "b2c-backend", "aws", "cloudwatch", "logs"]
+    path: "~/git/product-agents/skills/b2c-backend/cloudwatch/SKILL.md"
+    scope: "service:gongbiz-b2c-backend"
+
+  - id: "b2c-backend-campaign-conversion"
+    name: "B2C Backend Campaign Conversion"
+    tags: ["operations", "b2c-backend", "campaign", "conversion", "analytics"]
+    path: "~/git/product-agents/skills/b2c-backend/campaign-conversion/SKILL.md"
+    scope: "service:gongbiz-b2c-backend"

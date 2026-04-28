@@ -31,9 +31,22 @@ EC2 서버에 SSH 접속하여 로그를 확인한다.
 3. SSH 접속하여 명령을 실행한다.
 
 ### SSH 기본 옵션
+
+기본 권장 (사전 호스트 키 등록):
+
+```bash
+ssh -i {PEM} -o ConnectTimeout=10 {유저}@{호스트}
 ```
+
+> **첫 접속 시**: SSH가 호스트 키 지문을 보여주면 직접 확인 후 `yes`로 등록한다 (`~/.ssh/known_hosts`에 영구 저장). 이후 접속에서는 자동 검증된다.
+
+CI/스크립트 등 비대화 환경에서만 (보안 트레이드오프 인지 후):
+
+```bash
 ssh -i {PEM} -o StrictHostKeyChecking=no -o ConnectTimeout=10 {유저}@{호스트}
 ```
+
+> ⚠️ `StrictHostKeyChecking=no`는 MITM 공격을 검증 없이 수용한다. 사내망/VPN 내부 또는 알려진 정적 IP에서만 사용하고, 공용/외부망에서는 호스트 키를 사전 등록하는 방식을 우선한다.
 
 ### 로그 경로 패턴
 - crm-batch: `/var/log/tomcat8/NailShopAdmin.{날짜}.log` (날짜 형식: YYYY-MM-DD)

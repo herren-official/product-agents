@@ -48,7 +48,7 @@ name: learning-extractor
    - 디버깅 과정에서 얻은 교훈
    - 외부 서비스/API에 대한 새로운 이해
    - 도메인 지식 (비즈니스 로직, 데이터 흐름 등)
-2. `~/.claude/projects/-Users-herren/memory/MEMORY.md`를 읽고 기존 메모리와 비교
+2. `$HOME/.claude/projects/<user-home-encoded>/memory/MEMORY.md`를 읽고 기존 메모리와 비교 (`<user-home-encoded>`는 사용자 홈 디렉토리에서 `/`를 `-`로 치환한 형태. 예: `/Users/herren` → `-Users-herren`)
 3. 메모리 디렉토리의 다른 파일도 확인하여 중복 방지
 4. 결과를 다음 형식으로 반환:
    - **새로운 학습**: 기존 메모리에 없는 새로운 인사이트

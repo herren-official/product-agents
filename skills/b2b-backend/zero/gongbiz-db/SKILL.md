@@ -12,30 +12,32 @@ MariaDB CLI를 사용하여 데이터를 조회하는 범용 skill입니다.
 
 ## 입력
 
-```
+```text
 $ARGUMENTS
 ```
 
 ## DB 접속 정보
 
 ### DEV 환경
-```
-Host: dev-rds-gongbiz-crm.ctu50t96dzgd.ap-northeast-2.rds.amazonaws.com
-Port: 3306
+```text
+Host:     (set in ~/.claude/skills/gongbiz-db/dev.cnf — do not commit)
+Port:     3306
 Database: nailshop
-User: gongbiz_crm_dev
-Password: rhdqltj!&1004
+User:     (set in dev.cnf)
+Password: (set in dev.cnf)
 ```
 
 ### PROD 환경
-```
-Host: prod-rds-gongbiz-replica.ctu50t96dzgd.ap-northeast-2.rds.amazonaws.com
-Port: 3306
+```text
+Host:     (set in ~/.claude/skills/gongbiz-db/prod.cnf — do not commit)
+Port:     3306
 Database: nailshop
-User: (개인별 계정 - prod.cnf에 설정)
-Password: (개인별 비밀번호 - prod.cnf에 설정)
+User:     (개인별 계정 — prod.cnf에 설정)
+Password: (개인별 비밀번호 — prod.cnf에 설정)
 ```
-> PROD는 개인별 읽기전용 계정을 사용합니다. 본인 계정은 노션 "RDS 계정 목록"에서 확인 후 prod.cnf에 설정하세요.
+> 접속 정보는 모두 `~/.claude/skills/gongbiz-db/{dev,prod,prod-primary-rw}.cnf` 파일로 관리합니다 (`.gitignore`로 차단).
+> PROD는 개인별 읽기전용 계정을 사용합니다. 본인 계정은 노션 "RDS 계정 목록"에서 확인 후 `prod.cnf`에 설정하세요.
+> CLI 사용 예: `mariadb --defaults-file=~/.claude/skills/gongbiz-db/dev.cnf -e "..."`
 
 ## 실행 흐름
 
@@ -139,7 +141,7 @@ mariadb --defaults-file=~/.claude/skills/gongbiz-db/prod.cnf -e "YOUR_SQL_HERE"
 
 ## 사용 예시
 
-```
+```text
 /gongbiz-db dev employee id=herrenail의 가용 샵 목록
 /gongbiz-db prod shopno가 S000000001인 샵 정보
 /gongbiz-db dev 최근 7일 내 가입한 직원 목록

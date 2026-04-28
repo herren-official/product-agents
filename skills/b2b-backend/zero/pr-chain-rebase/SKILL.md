@@ -28,6 +28,14 @@ PR 체인 브랜치들을 순서대로 리베이스하고 force push한다.
 - 동시에 하위 방향으로도 탐색하여 현재 브랜치 아래에 달린 PR들도 포함한다.
 - 최종적으로 루트에서 리프까지의 순서가 정해진 브랜치 리스트를 만든다.
 
+**순환 탐지 (필수)**
+
+탐색 중 방문한 브랜치를 `visited` Set으로 추적한다. 재귀 진입 직전에 `if branch in visited: 경고 후 해당 경로 skip` 검사를 수행한다.
+
+- 순환 감지 시 전체 프로세스를 중단하지 않고 **해당 사이클만 건너뛴다** (다른 가지 탐색은 계속 진행).
+- 사용자에게 경고를 출력한다: `⚠️ Cycle detected at {branch} (path: A → B → C → A). 해당 경로는 스킵합니다.`
+- 사이클이 1회 이상 감지되면 최종 요약에도 명시한다.
+
 ### 3. 리베이스 순서 결정
 
 - 체인 구조를 최상위(base에 가까운 쪽)부터 하위(리프) 순서로 정렬한다.
@@ -38,12 +46,14 @@ PR 체인 브랜치들을 순서대로 리베이스하고 force push한다.
 각 브랜치에 대해 다음을 순서대로 실행한다:
 
 ```bash
-git fetch origin {base_branch}
+git fetch origin {base_branch} {branch}
 git checkout {branch}
-git rebase {base_branch}
-git fetch origin {branch}
+git rebase origin/{base_branch}
 git push origin {branch} --force-with-lease
 ```
+
+- 로컬 base가 아닌 `origin/{base_branch}`를 기준으로 rebase하여 원격의 최신 상태에 맞춘다.
+- `git fetch`는 두 브랜치를 한 번에 받아오고, rebase 이후 추가 fetch는 불필요하다 (push만 수행).
 
 - 리베이스 충돌 발생 시 즉시 `git rebase --abort`를 실행하고, 해당 브랜치에서 중단한다.
 - 충돌이 발생한 브랜치와 충돌 내용을 사용자에게 알린다.
@@ -53,7 +63,7 @@ git push origin {branch} --force-with-lease
 
 모든 브랜치 처리가 끝나면 아래 형식으로 요약을 출력한다:
 
-```
+```markdown
 ## PR Chain Rebase 결과
 
 | 브랜치 | Base | PR | 상태 |

@@ -73,7 +73,7 @@ name: local-searcher
 
 작업 내용:
 1. `~/claude-resources/` 하위에서 관련 키워드 검색 (Grep)
-2. 메모리 파일(`~/.claude/projects/-Users-herren/memory/`)에서 관련 내용 확인
+2. 메모리 파일(`$HOME/.claude/projects/<user-home-encoded>/memory/`)에서 관련 내용 확인 (`<user-home-encoded>`는 사용자 홈 디렉토리에서 `/`를 `-`로 치환한 형태. 예: `/Users/herren` → `-Users-herren`)
 3. 이미 정리된 문서가 있으면 해당 내용 반환 (중복 작업 방지)
 4. 피그마 링크 등 외부 참조 URL 수집
 

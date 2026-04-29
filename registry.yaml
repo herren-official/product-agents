@@ -874,3 +874,65 @@ skills:
     tags: ["plan", "b2c-backend", "figma", "handoff", "requirements", "spec"]
     path: "~/git/product-agents/skills/b2c-backend/figma-handoff-extractor/SKILL.md"
     scope: "service:gongbiz-b2c-backend"
+
+  # ── Service: instaget-server ─────────────────────────────────────
+  - id: "instaget-backend-commit-push"
+    name: "Instaget Backend Commit & Push"
+    tags: ["ship", "instaget-backend", "git"]
+    path: "~/git/product-agents/skills/instaget-backend/commit-push/SKILL.md"
+    scope: "service:instaget-server"
+
+  - id: "instaget-backend-pr-creator"
+    name: "Instaget Backend PR Creator"
+    tags: ["ship", "instaget-backend", "git", "pr"]
+    path: "~/git/product-agents/skills/instaget-backend/pr-creator/SKILL.md"
+    scope: "service:instaget-server"
+
+  - id: "instaget-backend-pr-comment-reply"
+    name: "Instaget Backend PR Comment Reply"
+    tags: ["ship", "instaget-backend", "pr", "review"]
+    path: "~/git/product-agents/skills/instaget-backend/pr-comment-reply/SKILL.md"
+    scope: "service:instaget-server"
+
+  - id: "instaget-backend-pr-reviewer"
+    name: "Instaget Backend PR Reviewer"
+    tags: ["review", "instaget-backend", "pr"]
+    path: "~/git/product-agents/skills/instaget-backend/pr-reviewer/SKILL.md"
+    scope: "service:instaget-server"
+
+  - id: "instaget-backend-refactoring-assistant"
+    name: "Instaget Backend Refactoring Assistant"
+    tags: ["review", "instaget-backend", "refactor", "convention"]
+    path: "~/git/product-agents/skills/instaget-backend/refactoring-assistant/SKILL.md"
+    scope: "service:instaget-server"
+
+  # ── Service: fineadple-server ────────────────────────────────────
+  - id: "fineadple-backend-commit-push"
+    name: "Fineadple Backend Commit & Push"
+    tags: ["ship", "fineadple-backend", "git"]
+    path: "~/git/product-agents/skills/fineadple-backend/commit-push/SKILL.md"
+    scope: "service:fineadple-server"
+
+  - id: "fineadple-backend-pr-creator"
+    name: "Fineadple Backend PR Creator"
+    tags: ["ship", "fineadple-backend", "git", "pr"]
+    path: "~/git/product-agents/skills/fineadple-backend/pr-creator/SKILL.md"
+    scope: "service:fineadple-server"
+
+  - id: "fineadple-backend-pr-comment-reply"
+    name: "Fineadple Backend PR Comment Reply"
+    tags: ["ship", "fineadple-backend", "pr", "review"]
+    path: "~/git/product-agents/skills/fineadple-backend/pr-comment-reply/SKILL.md"
+    scope: "service:fineadple-server"
+
+  - id: "fineadple-backend-pr-reviewer"
+    name: "Fineadple Backend PR Reviewer"
+    tags: ["review", "fineadple-backend", "pr"]
+    path: "~/git/product-agents/skills/fineadple-backend/pr-reviewer/SKILL.md"
+    scope: "service:fineadple-server"
+
+  - id: "fineadple-backend-refactoring-assistant"
+    name: "Fineadple Backend Refactoring Assistant"
+    tags: ["review", "fineadple-backend", "refactor", "convention"]
+    path: "~/git/product-agents/skills/fineadple-backend/refactoring-assistant/SKILL.md"
+    scope: "service:fineadple-server"

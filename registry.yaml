@@ -868,3 +868,9 @@ skills:
     tags: ["operations", "b2c-backend", "campaign", "conversion", "analytics"]
     path: "~/git/product-agents/skills/b2c-backend/campaign-conversion/SKILL.md"
     scope: "service:gongbiz-b2c-backend"
+
+  - id: "b2c-backend-figma-handoff-extractor"
+    name: "B2C Backend Figma Hand-off Extractor"
+    tags: ["plan", "b2c-backend", "figma", "handoff", "requirements", "spec"]
+    path: "~/git/product-agents/skills/b2c-backend/figma-handoff-extractor/SKILL.md"
+    scope: "service:gongbiz-b2c-backend"

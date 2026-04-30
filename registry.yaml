@@ -875,6 +875,37 @@ skills:
     path: "~/git/product-agents/skills/b2c-backend/figma-handoff-extractor/SKILL.md"
     scope: "service:gongbiz-b2c-backend"
 
+  # ── Service: instaget-b2c-frontend ──────────────────────────────
+  - id: "instaget-front-create-commit"
+    name: "Instaget Front Create Commit"
+    tags: ["ship", "instaget-front", "git"]
+    path: "~/git/product-agents/skills/instaget-front/create-commit/SKILL.md"
+    scope: "service:instaget-b2c-frontend"
+
+  - id: "instaget-front-create-pr"
+    name: "Instaget Front Create PR"
+    tags: ["ship", "instaget-front", "git", "pr", "notion"]
+    path: "~/git/product-agents/skills/instaget-front/create-pr/SKILL.md"
+    scope: "service:instaget-b2c-frontend"
+
+  - id: "instaget-front-backlog-workflow"
+    name: "Instaget Front Backlog Workflow"
+    tags: ["ship", "instaget-front", "notion", "orchestrator"]
+    path: "~/git/product-agents/skills/instaget-front/backlog-workflow/SKILL.md"
+    scope: "service:instaget-b2c-frontend"
+
+  - id: "instaget-front-update-backlog"
+    name: "Instaget Front Update Backlog"
+    tags: ["ship", "instaget-front", "notion"]
+    path: "~/git/product-agents/skills/instaget-front/update-backlog/SKILL.md"
+    scope: "service:instaget-b2c-frontend"
+
+  - id: "instaget-front-figma-publishing"
+    name: "Instaget Front Figma Publishing"
+    tags: ["build", "instaget-front", "figma", "styled-components"]
+    path: "~/git/product-agents/skills/instaget-front/figma-publishing/SKILL.md"
+    scope: "service:instaget-b2c-frontend"
+
   # ── Service: instaget-server ─────────────────────────────────────
   - id: "instaget-backend-commit-push"
     name: "Instaget Backend Commit & Push"

@@ -875,6 +875,12 @@ skills:
     path: "~/git/product-agents/skills/b2c-backend/figma-handoff-extractor/SKILL.md"
     scope: "service:gongbiz-b2c-backend"
 
+  - id: "b2c-backend-jenkins-deploy"
+    name: "B2C Backend Jenkins Deploy"
+    tags: ["operations", "b2c-backend", "b2b-backend", "jenkins", "deploy", "aws", "ssm", "ec2", "ecs", "eb"]
+    path: "~/git/product-agents/skills/b2c-backend/jenkins-deploy/SKILL.md"
+    scope: "service:gongbiz-b2c-backend"
+
   # ── Service: instaget-b2c-frontend ──────────────────────────────
   - id: "instaget-front-create-commit"
     name: "Instaget Front Create Commit"

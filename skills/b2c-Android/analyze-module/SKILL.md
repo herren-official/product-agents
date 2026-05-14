@@ -2,41 +2,29 @@
 name: b2c-android-analyze-module
 description: "모듈의 구조, ViewModel, Screen, API 호출을 한눈에 분석. Use when: 모듈 분석, 모듈 구조 파악, 파일 구조 확인, 모듈 설명"
 argument-hint: "<module-name> (예: shop-detail, home, payment)"
+allowed-tools: ["Agent"]
 ---
 
 # 모듈 분석
 
-지정된 모듈의 구조를 분석하여 빠르게 파악할 수 있도록 정리합니다.
+지정된 모듈의 정적 구조 분석을 `analyze-code` 통합 에이전트에 `mode=module` 로 위임. 에이전트가 모듈 전체 grep + Read 후 정리된 표 형식으로 반환하므로 메인 컨텍스트에 raw 코드 노출 없음.
 
 분석 대상: $ARGUMENTS
 
-## 분석 순서
+## 호출
 
-### 1. 모듈 위치 확인
-- `feature/$ARGUMENTS/` 또는 `core/$ARGUMENTS/` 경로에서 소스 파일 탐색
-- `build.gradle.kts`에서 의존성 확인
+`Agent` 도구 1회:
+- `subagent_type`: `analyze-code`
+- `description`: `Analyze module $ARGUMENTS`
+- `prompt`: `mode=module, target=$ARGUMENTS. B2C Android 모듈 정적 구조 분석. 출력 형식·절차·원칙은 agent 정의 참조.`
 
-### 2. 파일 구조 분석
-- 전체 Kotlin 파일 목록 (src/main)
-- Screen, ViewModel, Contract, Navigation, Component 분류
+출력 형식 / 분석 절차 / 원칙은 에이전트 정의(`.claude/agents/analyze-code.md`) 가 단일 진실 소스. 에이전트 결과를 메인 대화에 그대로 표시.
 
-### 3. ViewModel 분석 (핵심)
-- `BaseIntentViewModel` 상속 확인
-- `init {}` 블록, public 메서드, `apiFlow`/`slackFlow`, `reduceSuccessState`, `postSideEffect`
+## 모듈명 규칙
+- feature 모듈: `shop-detail`, `home`, `payment`, `around-me` 등
+- core 모듈: `data`, `data-api`, `designsystem-v2`, `navigation`, `architecture` 등
+- 모듈 인덱스는 [.docs/module-index.md](../../../.docs/module-index.md) 참조
 
-### 4. UiState / Screen / Navigation / 테스트 현황 분석
+## 후속
 
-## 출력 형식
-```
-## {모듈명} 모듈 분석
-
-### 파일 구조 ({N}개 파일)
-### ViewModel 요약 (표)
-### UiState 필드 (표)
-### 네비게이션 맵
-### API 호출 목록 (표)
-### 테스트 현황
-```
-
-## PRD 연동
-- `.docs/prd/{module-name}.md` 파일이 존재하면 비즈니스 로직 참고
+분석 결과로 키워드 기반 플로우 추적이 필요하면 `/explain-flow <키워드>` 호출.

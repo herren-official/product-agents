@@ -1,5 +1,5 @@
 ---
-name: b2c-android-resource-cleaner
+name: b2c-android-clean-resources
 description: "미사용 Android 리소스를 태스크별로 안전하게 제거하고 빌드 테스트. Use when: 리소스 정리, 미사용 리소스 제거, drawable/layout/strings 정리"
 tools: Bash, Read, Write, Edit
 ---

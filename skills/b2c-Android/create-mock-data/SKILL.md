@@ -26,12 +26,16 @@ B2C는 `MockWebServer.dispatchResponse()` 가 **파일명 규칙**을 통해 요
 4. **Path 값 치환** (예: `{shopId}` → `S000003969`)
 5. **Query 파라미터** (key=value 형태)
 6. **사용 feature 모듈** (예: `feature/shop-detail` → `feature:shop-detail/src/test/resources/`)
-7. **시나리오**:
-   - `success` (200 성공, 기본값)
-   - `apiError` (500 API 에러)
-   - `apiNotSuccess` (200 이지만 result: false)
-   - `empty` (빈 데이터)
-   - `failAuth` (401)
+7. **시나리오** (`JsonInterceptor.Companion` 상수 정합):
+   - `success` (200 성공, 기본값) — **도메인별 fixture**
+   - `apiSuccess` — 공용 `called_api_success.json` 사용
+   - `apiError` (500 API 에러) — 공용 `called_api_error.json` 사용
+   - `apiNotSuccess` (200 이지만 result: false) — 공용 `called_api_not_success.json` 사용
+   - `failAuth` (401) — 공용 `called_api_fail_auth.json` 사용
+   - `emptyData` (빈 데이터) — 공용 `called_empty_data.json` 사용
+   - `exception` — 매핑 실패 (의도된 에러 발생 케이스)
+
+> ⚠ **`success` 만 도메인 폴더에 도메인별 fixture 작성**. 그 외 apiResult 는 공용 파일 (5단계) 사용. code 가 `204` / `401` 인 경우도 공용 (`called_204.json` / `called_401.json`).
 
 ### 2단계: 저장 경로 결정
 
@@ -76,7 +80,9 @@ feature/{module}/src/test/resources/{domain}/{fileName}.json
 - path 내 `.` 과 `:` 는 `_` 로 치환
 - query string: `key=value` 를 `_` 로 연결. `mock`, `mockCode`, `mockApiResult` 는 제외
 - 상태 코드: `200`, `400`, `500` 등
-- apiResult: `success`, `apiError`, `apiNotSuccess`, `failAuth`, `empty`
+- apiResult (`JsonInterceptor.Companion` 정합): `success`, `apiSuccess`, `apiError`, `apiNotSuccess`, `failAuth`, `emptyData`, `exception`
+
+> **주의**: `apiResult == "success"` 일 때만 위 변환 규칙으로 **도메인 폴더에 도메인별 파일** 생성. 그 외 apiResult / 특정 code (`204`, `401`) 는 **공용 파일** (5단계) 매핑.
 
 #### 예시
 
@@ -143,25 +149,26 @@ JSON (`get_api_v1_booking_S000003969_1_slots_startDate=2024-01-01_endDate=2024-0
 
 ### 5단계: 공용 응답 파일 확인
 
-공용 시나리오 파일은 feature 모듈 `src/test/resources/` 루트에 이미 존재할 수 있다. 없으면 생성한다:
+`apiResult != "success"` 또는 특정 code 는 **도메인 폴더가 아닌 공용 파일**을 사용한다 (`JsonInterceptor.getApiResultFile()` 정합). 공용 파일은 `src/test/resources/` **루트** (도메인 폴더 X) 에 둔다.
 
-| 파일 | 용도 | 내용 |
-|------|-----|------|
-| `called_api_success.json` | `apiResult: true` 기본 래퍼 | `{"apiResult": true, "data": null}` |
-| `called_api_not_success.json` | `apiResult: false` | `{"apiResult": false, "message": "실패"}` |
-| `called_api_error.json` | 500 에러 | `{"timestamp": "...", "status": 500, "code": "E_INTERNAL", "message": "..."}` |
-| `called_api_fail_auth.json` | 401 인증 만료 | `{"timestamp": "...", "status": 401, "code": "E_UNAUTHORIZED", "message": "..."}` |
-| `called_empty_data.json` | 빈 데이터 | `{"data": null}` 또는 `[]` |
-| `called_204.json` | 204 No Content | `{}` |
-| `called_401.json` | 401 Unauthorized | `{"timestamp": "...", "status": 401, "code": "E_UNAUTHORIZED", "message": "..."}` |
+| 트리거 조건 | 공용 파일 | 내용 예시 |
+|---|---|---|
+| `apiResult=apiSuccess` | `called_api_success.json` | `{"apiResult": true, "data": null}` |
+| `apiResult=apiNotSuccess` | `called_api_not_success.json` | `{"apiResult": false, "message": "실패"}` |
+| `apiResult=apiError` | `called_api_error.json` | `{"timestamp": "...", "status": 500, "code": "E_INTERNAL", "message": "..."}` |
+| `apiResult=failAuth` | `called_api_fail_auth.json` | `{"timestamp": "...", "status": 401, "code": "E_UNAUTHORIZED", "message": "..."}` |
+| `apiResult=emptyData` | `called_empty_data.json` | `{"data": null}` 또는 `[]` |
+| `code=204` (그 외 apiResult=success) | `called_204.json` | `{}` |
+| `code=401` (그 외 apiResult=success) | `called_401.json` | `{"timestamp": "...", "status": 401, ...}` |
+| `apiResult=exception` | (없음 — 빈 문자열 반환, 의도된 매핑 실패) | — |
 
 이미 존재하면 재사용. 없으면 생성 후 `AskUserQuestion` 으로 내용 검토 요청.
 
 ### 6단계: 파일 생성 및 확인
 
 ```bash
-# 디렉토리 생성 (없으면)
-mkdir -p /Users/herren/Documents/GitHub/gongbiz-b2c-android/feature/{module}/src/test/resources/{domain}/
+# 디렉토리 생성 (없으면) — 프로젝트 루트 기준 상대 경로
+mkdir -p feature/{module}/src/test/resources/{domain}/
 
 # Write 로 JSON 생성
 ```
@@ -194,7 +201,7 @@ fun `API 에러 시 SideEffect 발행`() = runTest(coroutineExtension.testDispat
 생성 완료: {fileName}
 
 경로: feature/{module}/src/test/resources/{domain}/{fileName}.json
-시나리오: {success/apiError/empty ...}
+시나리오: {success/apiError/emptyData ...}
 매칭 URL: {http method} {endpoint}
 
 사용:
@@ -222,6 +229,6 @@ fun `API 에러 시 SideEffect 발행`() = runTest(coroutineExtension.testDispat
 - 파일명 규칙: `core/data/src/main/java/com/herren/gongb2c/data/core/JsonInterceptor.kt` (`getApiResultFile`, `getFormattedFileName`, `getDomainFolder`)
 - 실 사용 예시: `feature/shop-detail/src/test/resources/shop/get_api_v1_shop_S000003969_200_success.json`
 
-## 관련 스킬
+## 관련
 
-- [create-api](../create-api/SKILL.md) — API 레이어 생성 후 이 스킬로 mock 데이터 작성 권장
+- API 레이어 추가: `.docs/conventions/api-convention.md` 참조해서 Service/Entity/Vo 등 직접 작성 후 이 스킬로 mock 데이터 생성

@@ -9,9 +9,7 @@ allowed-tools: ["bash", "read", "write", "edit", "grep", "glob", "mcp__notionMCP
 
 작업 완료 후 PR 생성까지의 전체 워크플로우를 순차 실행합니다.
 
-!git branch --show-current
-!git status --porcelain
-!git diff --stat
+!.claude/scripts/git-context.sh
 
 인자: $ARGUMENTS
 
@@ -26,32 +24,31 @@ allowed-tools: ["bash", "read", "write", "edit", "grep", "glob", "mcp__notionMCP
 ```
 Step 1: /create-commit — 코드 정리(simplify) + 커밋
 Step 2: unit-test      — 변경된 ViewModel/UseCase 테스트 생성/수정 + 커밋
-Step 3: check-build    — 빌드/린트/테스트 검증
-Step 4: /create-pr     — PR 자동 생성 (노션 연동)
+Step 3: /create-pr     — check-build 자동 호출 (컴파일 + 단위 테스트) + PR 생성 (노션 연동)
 ```
 
 **`--no-test` 옵션 사용 시**:
 ```
 Step 1: /create-commit — 코드 정리(simplify) + 커밋
-Step 2: check-build    — 빌드/린트/테스트 검증
-Step 3: /create-pr     — PR 자동 생성 (노션 연동)
+Step 2: /create-pr     — check-build 자동 호출 + PR 생성
 ```
 
 각 단계 실패 시 중단하고 원인을 안내합니다.
 사용자가 단계를 건너뛰고 싶으면 요청에 따라 스킵 가능합니다.
 
-> `/create-commit`에 코드 정리(simplify)가 포함되어 있으므로 별도 실행 불필요
+> 빌드/테스트 검증은 `/create-pr` 안의 check-build 강제 호출로 단일화. ship 단독에서 별도 호출 안 함 (중복 방지).
+> 코드 정리(simplify)는 `/create-commit` Step 0 에서 **Simplify Targets ≥ 1 일 때 강제 호출** (3 에이전트 병렬). 트리거 대상: Kotlin + strings.xml + Mock JSON. md/docs/drawable 만 변경 시 스킵.
 
 ---
 
 ## Step 1: 커밋 (create-commit)
 
-**필수 참조**: `.docs/commit-convention.md`
+**필수 참조**: `.docs/conventions/commit-convention.md`. 상세는 `/create-commit` 위임 (단일 진실 소스).
 
 1. 변경사항 분석 및 논리적 단위로 분류
 2. 커밋 컨벤션에 맞는 메시지 생성:
    - `<type>: <subject>` (한글, 50자 이내)
-   - Claude 서명/Co-Author/이모지 금지
+   - Claude 서명/Co-Author/이모지 금지 (**SA-COMMIT-002 commit-msg hook 자동 차단**)
 3. 논리적 단위별 개별 커밋
 4. 민감 파일 제외 (`.env`, `apikey.properties`)
 5. 커밋 결과 표시
@@ -65,25 +62,23 @@ Step 3: /create-pr     — PR 자동 생성 (노션 연동)
 
 변경된 파일에서 ViewModel/UseCase를 감지하여 테스트 코드를 자동 생성/수정합니다.
 
-**필�� 참조**: `.docs/conventions/test-convention.md`, `.docs/test-workflow.md`
+**필수 참조**: `.docs/conventions/test-convention.md`, `.docs/test-workflow.md`
 
-1. **변경 대상 감지**:
+1. **변경 대상 감지 + 기존 테스트 확인** (결정적 스크립트):
    ```bash
-   git diff --name-only HEAD~1..HEAD -- '*.kt'
+   .claude/scripts/test-targets.sh HEAD~1
    ```
-   - 변경된 파일에서 ViewModel, UseCase 클래스 추출
-   - 테스트 대상이 없으면 스킵
+   출력에 각 대상의 `수정 모드` / `생성 모드` 가 결정적으로 표기됨. "테스트 대상 없음" 이면 스킵.
 
-2. **기존 테스트 확인**:
-   - 테스트 파일이 있으면 → **수정 모드** (기존 테스트 실행 → 실패 수정)
-   - 테스트 파일이 없으면 → **생성 모드** (테스트 생성 → 실행 → 실패 수정)
-
-3. **테스트 생성/수정** (`unit-test` 에이전트 위임):
-   - `MockWebServerTestViewModel` 상속 패턴 적용
+2. **테스트 생성/수정** (`unit-test` 에이전트 위임):
+   - `Agent` 도구로 1회 호출:
+     - `subagent_type`: `unit-test`
+     - `description`: `Unit tests for changed ViewModels/UseCases`
+     - `prompt`: `변경 대상(test-targets.sh 출력) 의 ViewModel/UseCase 테스트 생성→실행→실패 수정→통과까지 자율 수행. MockWebServerTestViewModel 상속 패턴.`
    - 생성 → 실행 → 실패 수정 → 재실행 (최대 3회 반복)
    - 전체 통과까지 자동 수행
 
-4. **테스트 코드 커밋**:
+3. **테스트 코드 커밋**:
    - 테스트 파일만 별도 커밋: `test: {ClassName} 유닛 테스트 작성`
    - `.docs/viewmodel-test-status.md` 업데이트 포함
 
@@ -93,56 +88,19 @@ Step 3: /create-pr     — PR 자동 생성 (노션 연동)
 
 ---
 
-## Step 3: 빌드 체크 (check-build) — `--no-test` 시 Step 2
+## Step 3: PR 생성 (create-pr) — `--no-test` 시 Step 2
 
-1. 변경된 모듈 감지 (`git diff`에서 모듈 경로 추출)
-2. **컴파일 체크**:
-   ```bash
-   ./gradlew assembleDevDebug --continue
-   ```
-3. **린트 체크** (변경 모듈만):
-   ```bash
-   ./gradlew :{module}:lintDevDebug --continue
-   ```
-4. **테스트 실행** (테스트 파일 있는 모듈만):
-   ```bash
-   ./gradlew :{module}:testDevDebugUnitTest --continue
-   ```
-5. 결과 요약:
+`/create-pr` 스킬에 위임 (단일 진실 소스, 상세는 [create-pr/SKILL.md](../create-pr/SKILL.md) 참조).
 
-```
-| 항목 | 결과 | 상세 |
-|------|------|------|
-| 컴파일 | PASS/FAIL | {소요 시간} |
-| 린트 | PASS/WARN/FAIL | Error {N}, Warning {N} |
-| 테스트 | PASS/FAIL | {성공}/{실패}/{스킵} |
-```
+`/create-pr` 안에서 **Step 0 으로 check-build agent 자동 호출** — 컴파일 + 단위 테스트 검증 통과해야 PR 생성. 실패 시 PR 생성 안 함, 사용자 fix 후 재호출.
 
-### 실패 시
-- **컴파일 실패**: 에러 원인 안내, 워크플로우 중단
-- **린트 Error**: 에러 원인 안내, 워크플로우 중단
-- **린트 Warning만**: 사용자에게 "Warning 있지만 계속 진행할까요?" 확인
-- **테스트 실패**: 실패 테스트 안내, 사용자에게 "계속 진행할까요?" 확인
-
----
-
-## Step 4: PR 생성 (create-pr) — `--no-test` 시 Step 3
-
-**필수 참조**: `.docs/pr-convention.md`
-
+핵심 흐름:
+0. **check-build agent 자동 호출** (컴파일 + 단위 테스트) — 실패 시 즉시 중단
 1. 브랜치명에서 GBIZ 번호 추출
-2. Base 브랜치 결정:
-   - `$ARGUMENTS` 있으면 해당 브랜치/GBIZ 번호 사용
-   - 없으면 부모 브랜치 자동 탐색 → 실패 시 `dev`
-3. Notion 카드 검색 (GBIZ 번호)
-4. PR 제목/본문 자동 생성
-5. **사용자 확인** (필수): 제목, base, 본문, label 미리보기
-6. 기존 PR 확인 → Push → PR 생성
-7. Label 자동 설정 (브랜치 키워드 기반)
-8. **Notion 카드 3곳 업데이트**:
-   - GitHub 풀 리퀘스트 속성
-   - 내용 섹션
-   - 참고 섹션
+2. Base 브랜치 결정 (`$ARGUMENTS` 있으면 그대로, 없으면 부모 자동 탐색 → 실패 시 `develop`)
+3. Notion 카드 검색 → PR 제목/본문 자동 생성 → 사용자 확인 (필수)
+4. Push + PR 생성 + label 자동 설정
+5. Notion 카드 3곳 업데이트 (속성/내용/참고)
 
 ---
 
@@ -156,7 +114,7 @@ Step 3: /create-pr     — PR 자동 생성 (노션 연동)
 |------|------|
 | 커밋 (simplify 포함) | {커밋 N개 생성} |
 | 테스트 코드 | {N개 ViewModel 테스트 생성/수정} 또는 스킵 |
-| 빌드 체크 | {PASS / WARNING} |
+| 빌드 체크 (create-pr 안) | {컴파일 PASS + 단위 테스트 N 통과} |
 | PR 생성 | PR #{number} |
 
 ### PR
@@ -168,8 +126,9 @@ Step 3: /create-pr     — PR 자동 생성 (노션 연동)
 ## 사용 예시
 ```bash
 /ship                    # 전체 워크플로우 (테스트 포함, base 자동 탐색)
-/ship dev                # dev를 base로 PR 생성 (테스트 포함)
+/ship develop            # develop 을 base로 PR 생성 (테스트 포함)
+/ship epic-ai/main       # epic accumulator main 을 base 로 (stack PR)
 /ship --no-test          # 테스트 코드 작성 없이 PR
-/ship dev --no-test      # dev를 base로, 테스트 스킵
+/ship develop --no-test  # develop 을 base로, 테스트 스킵
 /ship GBIZ-19448         # GBIZ-19448 브랜치를 base로
 ```
